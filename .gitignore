@@ -12,5 +12,8 @@
 *.vsix
 
 
-
+# Build
 build/
+
+#Cmake
+CmakeLists.txt
