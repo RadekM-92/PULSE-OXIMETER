@@ -61,9 +61,18 @@ typedef enum
     ALED1VAL		 =	0x2D,   /** LED1 ambient digital value */
     LED2_ALED2VAL	 =	0x2E,   /** (LED2 – LED2 ambient) digital value */
     LED1_ALED1VAL	 =	0x2F 	/** (LED1 – LED1 ambient) digital value */
-}AFE4400_REGS_ADDRESS_t;
+} AFE4400_REGS_ADDRESS_t;
 
-
+/**
+ * CONTROL0 Bits
+*/
+typedef enum
+{
+    SPI_READ        =   (1<<0), /** SPI read */
+    TIM_COUNT_RST   =   (1<<1), /** Timer counter reset */
+    DIAG_EN         =   (1<<2), /** Diagnostic enable */
+    SW_RST          =   (1<<3)  /** Software reset */
+} CONTROL0_BITS;
 
 
 
