@@ -137,6 +137,26 @@ typedef enum
 
 } CONTROL2_BITS_t;
 
+/**
+ * DIAG Bits
+*/
+typedef enum
+{
+    INPSCLED    =   (1<<0), /** INP to LED diagnostic flag */
+    INNSCLED    =   (1<<1), /** INN to LED diagnostic flag */
+    INPSCGND    =   (1<<2), /** INP to GND diagnostic flag */
+    INNSCGND    =   (1<<3), /** INN to GND diagnostic flag */
+    PDSC        =   (1<<4), /** PD short diagnostic flag */
+    PDOC        =   (1<<5), /** PD open diagnostic flag */
+    OUTNSHGND   =   (1<<6), /** OUTN to GND diagnostic flag */
+    OUTPSHGND   =   (1<<7), /** OUTP to GND diagnostic flag */
+    LEDSC       =   (1<<8), /** LED short diagnostic flag */
+    LED2OPEN    =   (1<<9), /** LED2 open diagnostic flag */
+    LED1OPEN    =   (1<<10), /** LED1 open diagnostic flag */
+    LED_ALM     =   (1<<11), /** LED alarm status diagnostic flag */
+    PD_ALM      =   (1<<12) /** Power-down alarm status diagnostic flag */
+} DIAG_BITS_t;
+
 #endif
 
 
