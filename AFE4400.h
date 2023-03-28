@@ -72,7 +72,7 @@ typedef enum
     TIM_COUNT_RST   =   (1<<1), /** Timer counter reset */
     DIAG_EN         =   (1<<2), /** Diagnostic enable */
     SW_RST          =   (1<<3)  /** Software reset */
-} CONTROL0_BITS;
+} CONTROL0_BITS_t;
 
 
 
