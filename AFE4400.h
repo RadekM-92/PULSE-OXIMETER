@@ -113,7 +113,15 @@ typedef enum
 
 } TIA_AMP_GAIN_t;
 
-
+/**
+ * LEDCNTRL Bits
+*/
+typedef enum
+{
+    LED2_0      =   (1<<0), /** Program LED current for LED2 signal - bit 0 */
+    LED1_0      =   (1<<8), /** Program LED current for LED1 signal - bit 0 */
+    LEDCUROFF   =   (1<<17),    /** Turns the LED current source on or off */
+} LEDCNTRL_BITS_t;
 
 #endif
 
