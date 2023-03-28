@@ -169,6 +169,69 @@ typedef struct
     uint8_t SW_RST;
 } CONTROL0_t;
 
+/**
+ * AFE4400 - All registers structure
+*/
+typedef struct
+{
+    uint32_t	CONTROL0		 ;   /** Control Register 0 */
+					 
+    uint32_t	LED2STC			 ;   /** Sample LED2 Start Count Register */
+    uint32_t	LED2ENDC		 ;   /** Sample LED2 End Count Register */
+    uint32_t	LED2LEDSTC		 ;   /** LED2 start count */
+    uint32_t	LED2LEDENDC		 ;   /** LED2 end count */
+    uint32_t	ALED2STC		 ;   /** Sample ambient LED2 start count */
+    uint32_t	ALED2ENDC		 ;   /** Sample ambient LED2 end count */
+					 
+    uint32_t	LED1STC			 ;   /** Sample LED1 Start Count Register */
+    uint32_t	LED1ENDC		 ;   /** Sample LED1 End Count Register */
+    uint32_t	LED1LEDSTC		 ;   /** LED1 start count */
+    uint32_t	LED1LEDENDC		 ;   /** LED1 end count */
+    uint32_t	ALED1STC		 ;   /** Sample ambient LED1 start count */
+    uint32_t	ALED1ENDC		 ;   /** Sample ambient LED1 end count */
+					 
+    uint32_t	LED2CONVST		 ;   /** LED2 convert start count */
+    uint32_t	LED2CONVEND		 ;   /** LED2 convert end count */
+    uint32_t	ALED2CONVST		 ;   /** LED2 ambient convert start count */
+    uint32_t	ALED2CONVEND	 ;   /** LED2 ambient convert end count */
+					 
+    uint32_t	LED1CONVST		 ;   /** LED1 convert start count */
+    uint32_t	LED1CONVEND		 ;   /** LED1 convert end count */
+    uint32_t	ALED1CONVST		 ;   /** LED1 ambient convert start count */
+    uint32_t	ALED1CONVEND	 ;   /** LED1 ambient convert end count */
+					 
+    uint32_t	ADCRSTSTCT0		 ;   /** ADC Reset 0 Start Count Register */
+    uint32_t	ADCRSTENDCT0	 ;   /** ADC RESET 0 start count */
+    uint32_t	ADCRSTSTCT1		 ;   /** ADC Reset 1 Start Count Register */
+    uint32_t	ADCRSTENDCT1	 ;   /** ADC RESET 1 start count */
+    uint32_t	ADCRSTSTCT2		 ;   /** ADC Reset 2 Start Count Register */
+    uint32_t	ADCRSTENDCT2	 ;   /** ADC RESET 2 start count */
+    uint32_t	ADCRSTSTCT3		 ;   /** ADC Reset 3 Start Count Register */
+    uint32_t	ADCRSTENDCT3	 ;   /** ADC RESET 3 start count */
+					
+    uint32_t	PRPCOUNT		 ;   /** Pulse Repetition Period Count Register */
+    uint32_t	CONTROL1		 ;   /** Control Register 1 */
+    uint32_t	SPARE1			 ;   /** SPARE1 Register For Future Use */
+    uint32_t	TIAGAIN			 ;   /** Transimpedance Amplifier Gain Setting Register */
+    uint32_t	TIA_AMB_GAIN	 ;   /** Transimpedance Amplifier and Ambient Cancellation Stage Gain Register */
+    uint32_t	LEDCNTRL		 ;   /** LED Control Register */
+    uint32_t	CONTROL2		 ;   /** Control Register 2 */
+    uint32_t	SPARE2		 	 ;   /** SPARE2 Register For Future Use */
+    uint32_t	SPARE3		 	 ;   /** SPARE3 Register For Future Use */
+    uint32_t	SPARE4		 	 ;   /** SPARE4 Register For Future Use */
+    uint32_t	RESERVED1		 ;   /** RESERVED1 Register For Factory Use Only */
+    uint32_t	RESERVED2		 ;   /** RESERVED2 Register For Factory Use Only */
+    uint32_t	ALARM		 	 ;   /** Alarm Register */
+    uint32_t	LED2VAL		 	 ;   /** LED2 digital value */
+    uint32_t	ALED2VAL		 ;   /** LED2 ambient digital value */
+    uint32_t	LED1VAL		 	 ;   /** LED1 digital value */
+    uint32_t	ALED1VAL		 ;   /** LED1 ambient digital value */
+    uint32_t	LED2_ALED2VAL	 ;   /** (LED2 – LED2 ambient) digital value */
+    uint32_t	LED1_ALED1VAL	 ;	/** (LED1 – LED1 ambient) digital value */
+} AFE4400_Data_t;
+
+
+
 
 #endif
 
