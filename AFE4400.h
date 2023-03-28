@@ -1,6 +1,7 @@
 #ifndef AFE4400_H
 #define AFE4400_H
 
+#include <stdint.h>
 
 /**
  * AFE4400 register map
@@ -156,6 +157,18 @@ typedef enum
     LED_ALM     =   (1<<11), /** LED alarm status diagnostic flag */
     PD_ALM      =   (1<<12) /** Power-down alarm status diagnostic flag */
 } DIAG_BITS_t;
+
+/**
+ * CONTROL0 data
+*/
+typedef struct
+{
+    uint8_t SPI_READ;
+    uint8_t TIM_CNT_RST;
+    uint8_t DIAG_EN;
+    uint8_t SW_RST;
+} CONTROL0_t;
+
 
 #endif
 
