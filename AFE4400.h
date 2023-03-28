@@ -85,6 +85,36 @@ typedef enum
     CLKALMPIN_2     =   (1<<11) /** Clocks on ALM pin 0 */
 } CONTROL1_Bits_t;
 
+/**
+ * TIA_AMP_GAIN Bits
+*/
+typedef enum
+{
+    RF_LED_0    =   (1<<0), /** Program RF for LEDs - bit 0 */
+    RF_LED_1    =   (1<<1), /** Program RF for LEDs - bit 1 */
+    RF_LED_2    =   (1<<2), /** Program RF for LEDs - bit 2 */
+
+    CF_LED_0    =   (1<<3), /** Program CF for LEDs - bit 0 */
+    CF_LED_1    =   (1<<4), /** Program CF for LEDs - bit 1 */
+    CF_LED_2    =   (1<<5), /** Program CF for LEDs - bit 2 */
+    CF_LED_3    =   (1<<6), /** Program CF for LEDs - bit 3 */
+    CF_LED_4    =   (1<<7), /** Program CF for LEDs - bit 4 */
+
+    ST2GAIN_0   =   (1<<8), /** Stage 2 gain setting - bit 0 */
+    ST2GAIN_1   =   (1<<9), /** Stage 2 gain setting - bit 1 */
+    ST2GAIN_2   =   (1<<10),    /** Stage 2 gain setting - bit 2 */
+
+    STAGE2EN    =   (1<<14),    /** Stage 2 enable for LED 2 */
+
+    AMBDAC_0    =   (1<<16),    /** Ambient DAC value - bit 0 */
+    AMBDAC_1    =   (1<<17),    /** Ambient DAC value - bit 1 */
+    AMBDAC_2    =   (1<<18),    /** Ambient DAC value - bit 2 */
+    AMBDAC_3    =   (1<<19),    /** Ambient DAC value - bit 3 */
+
+} TIA_AMP_GAIN_t;
+
+
+
 #endif
 
 
