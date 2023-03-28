@@ -74,7 +74,16 @@ typedef enum
     SW_RST          =   (1<<3)  /** Software reset */
 } CONTROL0_BITS_t;
 
-
+/**
+ * CONTROL1 Bits
+*/
+typedef enum
+{
+    TIMEREN         =   (1<<8), /** Timer enable */
+    CLKALMPIN_0     =   (1<<9), /** Clocks on ALM pin 0 */
+    CLKALMPIN_1     =   (1<<10), /** Clocks on ALM pin 0 */
+    CLKALMPIN_2     =   (1<<11) /** Clocks on ALM pin 0 */
+} CONTROL1_Bits_t;
 
 #endif
 
