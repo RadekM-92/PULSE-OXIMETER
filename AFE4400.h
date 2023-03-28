@@ -123,6 +123,20 @@ typedef enum
     LEDCUROFF   =   (1<<17),    /** Turns the LED current source on or off */
 } LEDCNTRL_BITS_t;
 
+/**
+ * CONTROL2 Bits
+*/
+typedef enum
+{
+    PDN_AFE     =   (1<<0), /** AFE power-down */
+    PDN_RX      =   (1<<1), /** RX power-down */
+    PDN_TX      =   (1<<2), /** TX power-down */
+    XTALDIS     =   (1<<9), /** Crystal disable mode */
+    DIGOUT_TRISTATE =   (1<<10),    /** Digital output 3-state mode */
+    TXBRGMOD    =   (1<<11)    /** Tx bridge mode */
+
+} CONTROL2_BITS_t;
+
 #endif
 
 
