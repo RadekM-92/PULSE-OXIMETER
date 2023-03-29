@@ -12,6 +12,10 @@ static void SoftwareReset(AFE4400_Data_t *Data)
     Data->CONTROL0 |= SW_RST;
 }
 
+static uint8_t IsSoftwareResetDone(AFE4400_Data_t *Data)
+{
+    return Data->CONTROL0 & SW_RST ? 0 : 1;
+}
 
 
 
