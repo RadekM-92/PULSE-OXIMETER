@@ -230,8 +230,15 @@ typedef struct
     uint32_t	LED1_ALED1VAL	 ;	/** (LED1 – LED1 ambient) digital value */
 } AFE4400_Data_t;
 
+/**
+ * Software reset - resets all internal registers to the default values
+*/
 static void SoftwareReset(AFE4400_Data_t *Data);
 
+/**
+ * Check softwre reset done: 1=OK
+*/
+static uint8_t IsSoftwareResetDone(AFE4400_Data_t *Data);
 
 #endif
 
