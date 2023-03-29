@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #define AFE4400_CLOCK_FRQ   4 000 000U;
+#define ADC_Reset_ClockCycle    3U;
 
 /**
  * AFE4400 register map
