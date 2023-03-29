@@ -236,11 +236,6 @@ typedef struct
 static void SoftwareReset(AFE4400_Data_t *Data);
 
 /**
- * Check softwre reset done: 1=OK
-*/
-static uint8_t IsSoftwareResetDone(AFE4400_Data_t *Data);
-
-/**
  * Diagnostic enable - At the end of the sequence, all fault status are stored in the DIAG register
 */
 static void DiagnosticEnable(AFE4400_Data_t *Data);
