@@ -3,8 +3,8 @@
 
 #include <stdint.h>
 
-#define AFE4400_CLOCK_FRQ   4 000 000U;
-#define ADC_Reset_ClockCycle    3U;
+#define AFE4400_CLOCK_FRQ       4000000U
+#define ADC_Reset_ClockCycle    3U
 
 /**
  * AFE4400 register map
@@ -248,7 +248,7 @@ static void DiagnosticEnable(AFE4400_Data_t *Data);
  * PRF - Pulse Repetition Period [Hz]
  * DutyCycle - 0..100[%]
 */
-static void TimerModuleInit(uint8_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data);
+static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data);
 
 #endif
 
