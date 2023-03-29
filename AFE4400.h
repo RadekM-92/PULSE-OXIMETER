@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+#define AFE4400_CLOCK_FRQ   4 000 000U;
+
 /**
  * AFE4400 register map
 */
