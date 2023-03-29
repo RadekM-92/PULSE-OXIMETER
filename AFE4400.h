@@ -230,7 +230,7 @@ typedef struct
     uint32_t	LED1_ALED1VAL	 ;	/** (LED1 – LED1 ambient) digital value */
 } AFE4400_Data_t;
 
-
+static void SoftwareReset(AFE4400_Data_t *Data);
 
 
 #endif
