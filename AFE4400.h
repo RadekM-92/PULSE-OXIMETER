@@ -247,7 +247,7 @@ static void DiagnosticEnable(AFE4400_Data_t *Data);
  * PRF - Pulse Repetition Period [Hz]
  * DutyCycle - 0..100[%]
 */
-static void TimerModuleInit(uint8_t PRF , uint8_t DutyCycle);
+static void TimerModuleInit(uint8_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data);
 
 #endif
 

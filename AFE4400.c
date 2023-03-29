@@ -17,3 +17,7 @@ static void DiagnosticEnable(AFE4400_Data_t *Data)
     Data->CONTROL0 |= DIAG_EN;
 }
 
+static void TimerModuleInit(uint8_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data)
+{
+
+}
