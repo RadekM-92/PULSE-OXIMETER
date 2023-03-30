@@ -33,6 +33,7 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
         
         ADC_TimersInit(PRF, DutyCycle, &Data);
         Convert_TimersInit(&Data);
+        Sample_TimersInit(&Data);
    }
 
     
