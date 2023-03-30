@@ -30,9 +30,10 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
    {
         Data->PRPCOUNT = (uint16_t *)(AFE4400_CLOCK_FRQ / PRF - 1);
         Data->ADCRSTENDCT0 = Data->PRPCOUNT;
+        
    }
 
-    ADC_TimersInit(PRF, DutyCycle, &Data);
+    
     
 }
 
@@ -44,17 +45,14 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
 */
 static void ADC_TimersInit(uint8_t PRF, uint8_t DutyCycle, AFE4400_Data_t *Data)
 {
-    if ((0 != PRF) && (0 < DutyCycle) && (100 > DutyCycle))
-    {
-       Data->ADCRSTSTCT0 = 0;
-       Data->ADCRSTENDCT0 = (uint16_t *)(Data->ADCRSTSTCT0 + ADC_Reset_ClockCycle);
-       Data->ADCRSTSTCT1 = (uint16_t *)( Data->ADCRSTSTCT0 + ((AFE4400_CLOCK_FRQ / PRF) * (DutyCycle / 100)));
-       Data->ADCRSTENDCT1 = (uint16_t *)( Data->ADCRSTSTCT1 + ADC_Reset_ClockCycle);
-       Data->ADCRSTSTCT2 = (uint16_t *)( Data->ADCRSTSTCT1 + ((AFE4400_CLOCK_FRQ / PRF) * (DutyCycle / 100)));
-       Data->ADCRSTENDCT2 = (uint16_t *)( Data->ADCRSTSTCT2 + ADC_Reset_ClockCycle);
-       Data->ADCRSTSTCT3 = (uint16_t *)( Data->ADCRSTSTCT2 + ((AFE4400_CLOCK_FRQ / PRF) * (DutyCycle / 100)));
-       Data->ADCRSTENDCT3 = (uint16_t *)( Data->ADCRSTSTCT3 + ADC_Reset_ClockCycle);
-    }
+    Data->ADCRSTSTCT0 = 0;
+    Data->ADCRSTENDCT0 = (uint16_t *)(Data->ADCRSTSTCT0 + ADC_Reset_ClockCycle);
+    Data->ADCRSTSTCT1 = (uint16_t *)( Data->ADCRSTSTCT0 + ((AFE4400_CLOCK_FRQ / PRF) * (DutyCycle / 100)));
+    Data->ADCRSTENDCT1 = (uint16_t *)( Data->ADCRSTSTCT1 + ADC_Reset_ClockCycle);
+    Data->ADCRSTSTCT2 = (uint16_t *)( Data->ADCRSTSTCT1 + ((AFE4400_CLOCK_FRQ / PRF) * (DutyCycle / 100)));
+    Data->ADCRSTENDCT2 = (uint16_t *)( Data->ADCRSTSTCT2 + ADC_Reset_ClockCycle);
+    Data->ADCRSTSTCT3 = (uint16_t *)( Data->ADCRSTSTCT2 + ((AFE4400_CLOCK_FRQ / PRF) * (DutyCycle / 100)));
+    Data->ADCRSTENDCT3 = (uint16_t *)( Data->ADCRSTSTCT3 + ADC_Reset_ClockCycle);
 }
 
 /** Convert TimersInit
