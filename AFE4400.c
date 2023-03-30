@@ -56,8 +56,7 @@ static void ADC_TimersInit(uint8_t PRF, uint8_t DutyCycle, AFE4400_Data_t *Data)
 }
 
 /** Convert TimersInit
-* PRF - Pulse Repetition Period [Hz]
-* DutyCycle - 0..100[%]
+* ADC_TimersInit() shall be call before call Convert_TimersInit()
 */
 static void Convert_TimersInit(AFE4400_Data_t *Data)
 {
