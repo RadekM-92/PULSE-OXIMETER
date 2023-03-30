@@ -71,3 +71,21 @@ static void Convert_TimersInit(AFE4400_Data_t *Data)
     Data->ALED1CONVST = (uint16_t *)(Data->ADCRSTENDCT3 + 1);
     Data->ALED1CONVEND = Data->PRPCOUNT;
 }
+
+/** Sample TimersInit
+ *  ADC_TimersInit() shall be call before call Sample_TimersInit()
+*/
+static void Sample_TimersInit(AFE4400_Data_t *Data)
+{
+    Data->ALED2STC = (uint16_t *)(Data->ADCRSTSTCT0 + 50);
+    Data->ALED2ENDC = (uint16_t *)(Data->ADCRSTSTCT1 - 2);
+
+    Data->LED1STC = (uint16_t *)(Data->ADCRSTSTCT1 + 50);
+    Data->LED1ENDC = (uint16_t *)(Data->ADCRSTSTCT2 - 2);
+
+    Data->ALED1STC = (uint16_t *)(Data->ADCRSTSTCT2 + 50);
+    Data->ALED1ENDC = (uint16_t *)(Data->ADCRSTSTCT3 - 2);
+    
+    Data->LED2STC = (uint16_t *)(Data->ADCRSTSTCT3 + 50);
+    Data->LED2ENDC = (uint16_t *)(Data->PRPCOUNT - 1);
+}
