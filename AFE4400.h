@@ -233,22 +233,6 @@ typedef struct
     uint32_t	LED1_ALED1VAL	 ;	/** (LED1 – LED1 ambient) digital value */
 } AFE4400_Data_t;
 
-/**
- * Software reset - resets all internal registers to the default values
-*/
-static void SoftwareReset(AFE4400_Data_t *Data);
-
-/**
- * Diagnostic enable - At the end of the sequence, all fault status are stored in the DIAG register
-*/
-static void DiagnosticEnable(AFE4400_Data_t *Data);
-
-/**
- * Timer module initialization function
- * PRF - Pulse Repetition Period [Hz]
- * DutyCycle - 0..100[%]
-*/
-static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data);
 
 #endif
 
