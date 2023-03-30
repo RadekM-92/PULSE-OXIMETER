@@ -60,10 +60,14 @@ static void ADC_TimersInit(uint8_t PRF, uint8_t DutyCycle, AFE4400_Data_t *Data)
 * PRF - Pulse Repetition Period [Hz]
 * DutyCycle - 0..100[%]
 */
-static void Convert_TimersInit(uint8_t PRF, uint8_t DutyCycle, AFE4400_Data_t *Data)
+static void Convert_TimersInit(AFE4400_Data_t *Data)
 {
-    if ((0 != PRF) && (0 < DutyCycle) && (100 > DutyCycle))
-    {
-
-    }
+    Data->LED2CONVST = (uint16_t *)(Data->ADCRSTENDCT0 + 1);
+    Data->LED2CONVEND = (uint16_t *)(Data->ADCRSTSTCT1 - 1);
+    Data->ALED2CONVST = (uint16_t *)(Data->ADCRSTENDCT1 + 1);
+    Data->ALED2CONVEND = (uint16_t *)(Data->ADCRSTSTCT2 - 1);
+    Data->LED1CONVST = (uint16_t *)(Data->ADCRSTENDCT2 + 1);
+    Data->LED1CONVEND = (uint16_t *)(Data->ADCRSTSTCT3 - 1);
+    Data->ALED1CONVST = (uint16_t *)(Data->ADCRSTENDCT3 + 1);
+    Data->ALED1CONVEND = Data->PRPCOUNT;
 }
