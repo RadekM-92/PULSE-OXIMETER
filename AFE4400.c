@@ -32,8 +32,7 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
         Data->ADCRSTENDCT0 = Data->PRPCOUNT;
    }
 
-   ADC_TimersInit(PRF, DutyCycle, &Data);
-
+    ADC_TimersInit(PRF, DutyCycle, &Data);
     
 }
 
@@ -57,3 +56,14 @@ static void ADC_TimersInit(uint8_t PRF, uint8_t DutyCycle, AFE4400_Data_t *Data)
     }
 }
 
+/** LED 1 TimersInit
+* PRF - Pulse Repetition Period [Hz]
+* DutyCycle - 0..100[%]
+*/
+static void LED1_TimersInit(uint8_t PRF, uint8_t DutyCycle, AFE4400_Data_t *Data)
+{
+    if ((0 != PRF) && (0 < DutyCycle) && (100 > DutyCycle))
+    {
+
+    }
+}
