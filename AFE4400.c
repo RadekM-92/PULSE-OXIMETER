@@ -26,7 +26,7 @@ static void DiagnosticEnable(AFE4400_Data_t *Data)
 */
 static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data)
 {
-   if (0 != PRF)
+   if ((0 != PRF) && (0 < DutyCycle) && (100 > DutyCycle))
    {
         Data->PRPCOUNT = (uint16_t *)(AFE4400_CLOCK_FRQ / PRF - 1);
         Data->ADCRSTENDCT0 = Data->PRPCOUNT;
@@ -35,6 +35,7 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
     ADC_TimersInit(PRF, DutyCycle, &Data);
     
 }
+
 
 /** ADC TimersInit 
  * PRF - Pulse Repetition Period [Hz]
