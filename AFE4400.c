@@ -35,9 +35,6 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
         Convert_TimersInit(&Data);
         Sample_TimersInit(&Data);
    }
-
-    
-    
 }
 
 
@@ -90,3 +87,16 @@ static void Sample_TimersInit(AFE4400_Data_t *Data)
     Data->LED2STC = (uint16_t *)(Data->ADCRSTSTCT3 + 50);
     Data->LED2ENDC = (uint16_t *)(Data->PRPCOUNT - 1);
 }
+
+/** LED pulse Timers Init 
+ *  ADC_TimersInit() shall be call before call Sample_TimersInit()
+*/
+static void LedPulse_TimersInit(AFE4400_Data_t *Data)
+{
+    Data->LED2LEDSTC = (uint16_t *)(Data->ADCRSTSTCT3);
+    Data->LED2LEDENDC = (uint16_t *)(Data->ALED1CONVEND);
+    Data->LED1LEDSTC = (uint16_t *)(Data->ADCRSTSTCT1);
+    Data->LED1LEDENDC = (uint16_t *)(Data->ALED2CONVEND);
+}
+
+
