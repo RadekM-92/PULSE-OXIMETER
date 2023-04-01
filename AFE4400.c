@@ -29,8 +29,6 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
    if ((0 != PRF) && (0 < DutyCycle) && (100 > DutyCycle))
    {
         Data->PRPCOUNT = (uint16_t *)(AFE4400_CLOCK_FRQ / PRF - 1);
-        Data->ADCRSTENDCT0 = Data->PRPCOUNT;
-        
         ADC_TimersInit(PRF, DutyCycle, &Data);
         Convert_TimersInit(&Data);
         Sample_TimersInit(&Data);
