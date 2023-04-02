@@ -36,6 +36,13 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
    }
 }
 
+/** Pulse Repetition Period Timer Init
+ * PRF - Pulse Repetition Period [Hz]
+*/
+static void PRP_TimerInit(uint16_t PRF, AFE4400_Data_t *Data)
+{
+     Data->PRPCOUNT = (uint16_t *)(AFE4400_CLOCK_FRQ / PRF - 1);
+}
 
 /** ADC TimersInit 
  * PRF - Pulse Repetition Period [Hz]
