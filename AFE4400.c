@@ -229,6 +229,17 @@ typedef struct
     uint32_t	LED1_ALED1VAL	 ;	/** (LED1 – LED1 ambient) digital value */
 } AFE4400_Data_t;
 
+/**
+ * AFE4400 - Parameters
+*/
+typedef struct
+{
+    uint16_t PRF;
+    uint8_t DutyCycle;
+
+    uint8_t LED1_Current_mA;
+    uint8_t LED2_Current_mA;
+} AFE4400_Parameters;
 
 
 
