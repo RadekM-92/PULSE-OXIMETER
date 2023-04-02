@@ -248,7 +248,7 @@ typedef struct
 
 AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
 
-
+AFE4400_Parameters_t AFE4400_Parameters;    /** AFE4400 - Parameters */
 
 
 /** Software reset - resets all internal registers to the default values */
