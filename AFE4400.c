@@ -36,6 +36,23 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
    }
 }
 
+/** TimerModuleInit - check parameters
+ *  1-OK, 0-NOK
+ *  PRF - Pulse Repetition Frequency [Hz]
+ *  DutyCycle - 0..100[%]
+*/
+static uint8_t IsTimerModuleParamOk( uint16_t PRF , uint8_t DutyCycle)
+{
+     if ((0 != PRF) && (0 < DutyCycle) && (100 > DutyCycle))
+     {
+        return 1;
+     }
+     else
+     {
+        return 0;
+     }
+}
+
 /** Pulse Repetition Frequency Timer Init
  * PRF - Pulse Repetition Frequency [Hz]
 */
