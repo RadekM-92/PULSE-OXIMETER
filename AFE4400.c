@@ -239,7 +239,7 @@ typedef struct
 
     uint8_t LED1_Current_mA;    /** LED1 current 0..50mA */
     uint8_t LED2_Current_mA;    /** LED2 current 0..50mA */
-} AFE4400_Parameters;
+} AFE4400_Parameters_t;
 
 
 
@@ -247,6 +247,8 @@ typedef struct
 
 
 AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
+
+
 
 
 /** Software reset - resets all internal registers to the default values */
