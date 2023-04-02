@@ -26,13 +26,17 @@ static void DiagnosticEnable(AFE4400_Data_t *Data)
 */
 static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data)
 {
-   if ((0 != PRF) && (0 < DutyCycle) && (100 > DutyCycle))
+   if (IsTimerModuleParamOk(PRF, DutyCycle))
    {
         PRP_TimerInit(PRF, &Data);
         ADC_TimersInit(PRF, DutyCycle, &Data);
         Convert_TimersInit(&Data);
         Sample_TimersInit(&Data);
         LedPulse_TimersInit(&Data);
+   }
+   else
+   {
+    ;
    }
 }
 
