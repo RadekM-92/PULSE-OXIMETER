@@ -21,7 +21,7 @@ static void DiagnosticEnable(AFE4400_Data_t *Data)
 
 /**
  * Timer module initialization function
- * PRF - Pulse Repetition Period [Hz]
+ * PRF - Pulse Repetition Frequency [Hz]
  * DutyCycle - 0..100[%]
 */
 static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data)
@@ -36,8 +36,8 @@ static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *D
    }
 }
 
-/** Pulse Repetition Period Timer Init
- * PRF - Pulse Repetition Period [Hz]
+/** Pulse Repetition Frequency Timer Init
+ * PRF - Pulse Repetition Frequency [Hz]
 */
 static void PRP_TimerInit(uint16_t PRF, AFE4400_Data_t *Data)
 {
@@ -45,7 +45,7 @@ static void PRP_TimerInit(uint16_t PRF, AFE4400_Data_t *Data)
 }
 
 /** ADC TimersInit 
- * PRF - Pulse Repetition Period [Hz]
+ * PRF - Pulse Repetition Frequency [Hz]
  * DutyCycle - 0..100[%]
  * 
 */
