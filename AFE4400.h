@@ -9,6 +9,9 @@
 /** AFE4400 Power down */
 void AFE4400_PowerDown(void);
 
+/** AFE4400 Power Up */
+void AFE4400_PowerUp(void);
+
 
 #endif
 
