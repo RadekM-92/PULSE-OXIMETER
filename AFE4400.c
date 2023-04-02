@@ -357,4 +357,8 @@ static void LedPulse_TimersInit(AFE4400_Data_t *Data)
     Data->LED1LEDENDC = (uint16_t *)(Data->ALED2CONVEND);
 }
 
-
+/** AFE4400 Power down */
+void AFE4400_PowerDown(AFE4400_Data_t *Data)
+{
+    Data->CONTROL2 |= PDN_AFE;
+}
