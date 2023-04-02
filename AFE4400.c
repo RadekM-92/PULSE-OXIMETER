@@ -234,11 +234,11 @@ typedef struct
 */
 typedef struct
 {
-    uint16_t PRF;
-    uint8_t DutyCycle;
+    uint16_t PRF;               /** Pulse repetition frequency [Hz] */
+    uint8_t DutyCycle;          /** Pule width [%]  */
 
-    uint8_t LED1_Current_mA;
-    uint8_t LED2_Current_mA;
+    uint8_t LED1_Current_mA;    /** LED1 current 0..50mA */
+    uint8_t LED2_Current_mA;    /** LED2 current 0..50mA */
 } AFE4400_Parameters;
 
 
