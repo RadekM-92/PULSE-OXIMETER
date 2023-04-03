@@ -302,11 +302,12 @@ static uint8_t IsTimerModuleParamOk( uint16_t PRF , uint8_t DutyCycle)
 }
 
 /** Pulse Repetition Frequency Timer Init
- * PRF - Pulse Repetition Frequency [Hz]
+* Parameters - configuration parameters
+* Data - AFE4400 registers
 */
-static void PRP_TimerInit(uint16_t PRF, AFE4400_Data_t *Data)
+static void PRP_TimerInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
 {
-     Data->PRPCOUNT = (uint16_t *)(AFE4400_CLOCK_FRQ / PRF - 1);
+     Data->PRPCOUNT = (uint16_t *)(AFE4400_CLOCK_FRQ / Parameters->PRF - 1);
 }
 
 /** ADC TimersInit 
