@@ -263,12 +263,11 @@ static void DiagnosticEnable(AFE4400_Data_t *Data)
     Data->CONTROL0 |= DIAG_EN;
 }
 
-/**
- * Timer module initialization function
- * PRF - Pulse Repetition Frequency [Hz]
- * DutyCycle - 0..100[%]
+/** Timer module initialization function
+* Parameters - configuration parameters
+* Data - AFE4400 registers
 */
-static void TimerModuleInit( uint16_t PRF , uint8_t DutyCycle, AFE4400_Data_t *Data)
+static void TimerModuleInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
 {
    if (IsTimerModuleParamOk(PRF, DutyCycle))
    {
