@@ -379,3 +379,29 @@ void AFE4400_PowerUp(AFE4400_Data_t *Data)
 {
     Data->CONTROL2 &= ~PDN_AFE;
 }
+
+/** LED current calculate
+ * LedCurrent - 0..50 [mA]
+ * Return value from 0 to 256
+*/
+static uint8_t LED_Current_mA_to_Raw(uint8_t LedCurrent)
+{
+    uint16_t LedCurrentTMP;
+
+    if((0 <= LedCurrent) && (LED_CurrentMax_mA >= LedCurrent))
+    {
+        LedCurrentTMP = (LedCurrent * 256) / LED_CurrentMax_mA;
+
+        return (uint8_t *)LedCurrentTMP;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+
+
+
+
+
