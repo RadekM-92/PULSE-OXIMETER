@@ -241,8 +241,17 @@ typedef struct
     uint8_t LED2_Current_mA;    /** LED2 current 0..50mA */
 } AFE4400_Parameters_t;
 
-
-
+/** Cf capatiences
+ * For example, to obtain CF = 100 pF, set D = 01111
+*/
+typedef enum
+{
+    Cf_05pF   =  (1<<0),
+    Cf_15pF   =  (1<<1),
+    Cf_25pF   =  (1<<2),
+    Cf_50pF   =  (1<<3),
+    Cf_150pF  =  (1<<4)    
+} Cf_capatiences_t;
 
 
 
