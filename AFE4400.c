@@ -239,6 +239,9 @@ typedef struct
 
     uint8_t LED1_Current_mA;    /** LED1 current 0..50mA */
     uint8_t LED2_Current_mA;    /** LED2 current 0..50mA */
+
+    uint8_t Cf;                 /** I-V Amplifier feedback common capacitor */
+    uint8_t Rf;                 /** I-V Amplifier feedback common resistor */
 } AFE4400_Parameters_t;
 
 /** Cf capatiences
