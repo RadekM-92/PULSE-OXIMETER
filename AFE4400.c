@@ -253,6 +253,23 @@ typedef enum
     Cf_150pF  =  (1<<4)    
 } Cf_capatiences_t;
 
+/** Rf resistances
+ * Program RF for LEDs
+*/
+typedef enum
+{
+    Rf_500k     =   0,
+    Rf_250k     =   1,
+    Rf_100k     =   2,
+    Rf_50k      =   3,
+    Rf_25k      =   4,
+    Rf_10k      =   5,
+    Rf_1M       =   6,
+    Rf_None     =   7
+
+} Rf_resistances_t;
+
+
 
 
 AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
