@@ -401,13 +401,13 @@ static void LedPulse_TimersInit(AFE4400_Data_t *Data)
 }
 
 /** AFE4400 Power down */
-void AFE4400_PowerDown(AFE4400_Data_t *Data)
+static void AFE4400_PowerDown(AFE4400_Data_t *Data)
 {
     Data->CONTROL2 |= PDN_AFE;
 }
 
 /** AFE4400 Power Up */
-void AFE4400_PowerUp(AFE4400_Data_t *Data)
+static void AFE4400_PowerUp(AFE4400_Data_t *Data)
 {
     Data->CONTROL2 &= ~PDN_AFE;
 }
