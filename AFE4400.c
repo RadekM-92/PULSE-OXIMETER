@@ -237,11 +237,14 @@ typedef struct
     uint16_t PRF;               /** Pulse repetition frequency [Hz] */
     uint8_t DutyCycle;          /** Pule width [%]  */
 
-    uint8_t LED1_Current_mA;    /** LED1 current 0..50mA */
-    uint8_t LED2_Current_mA;    /** LED2 current 0..50mA */
+    uint8_t LED1_Current_mA;    /** LED1 current 0..50[mA] */
+    uint8_t LED2_Current_mA;    /** LED2 current 0..50[mA] */
 
     uint8_t Cf;                 /** I-V Amplifier feedback common capacitor */
     uint8_t Rf;                 /** I-V Amplifier feedback common resistor */
+
+    uint8_t CancellationCurrent; /** Ambient DAC Cancellation Current*/
+    uint8_t STG2_GAIN;          /** Stage 2 gain  */
 } AFE4400_Parameters_t;
 
 /** Cf capatiences
