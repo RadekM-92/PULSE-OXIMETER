@@ -459,6 +459,10 @@ static void TxLedsCurrentInit(const AFE4400_Parameters_t *Parameters, AFE4400_Da
 
 }
 
-
+/** Tx Stage Init*/
+static void TxInit(void)
+{
+    TxLedsCurrentInit(&AFE4400_Parameters, &AFE4400_Data);
+}
 
 
