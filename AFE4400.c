@@ -401,15 +401,15 @@ static void LedPulse_TimersInit(AFE4400_Data_t *Data)
 }
 
 /** AFE4400 Power down */
-void AFE4400_PowerDown(AFE4400_Data_t *Data)
+void AFE4400_PowerDown(void)
 {
-    Data->CONTROL2 |= PDN_AFE;
+    AFE4400_Data.CONTROL2 |= PDN_AFE;
 }
 
 /** AFE4400 Power Up */
-void AFE4400_PowerUp(AFE4400_Data_t *Data)
+void AFE4400_PowerUp(void)
 {
-    Data->CONTROL2 &= ~PDN_AFE;
+    AFE4400_Data.CONTROL2 &= ~PDN_AFE;
 }
 
 /** LED current calculate

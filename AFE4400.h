@@ -11,10 +11,10 @@
 #define RxStage2_CurrentMax     10U
 
 /** AFE4400 Power down */
-void AFE4400_PowerDown(AFE4400_Data_t *Data);
+void AFE4400_PowerDown(void);
 
 /** AFE4400 Power Up */
-void AFE4400_PowerUp(AFE4400_Data_t *Data);
+void AFE4400_PowerUp(void);
 
 /** AFE4400 Init */
 void AFE4400_Init(void);
