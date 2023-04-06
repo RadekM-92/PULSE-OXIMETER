@@ -7,6 +7,8 @@
 #define ADC_Reset_ClockCycle    3U
 #define LED_CurrentMax_mA       50U
 #define LED_CurrentMax_Raw      256
+#define RxStage2_MaxGain        4U
+#define RxStage2_CurrentMax     10U
 
 /** AFE4400 Power down */
 void AFE4400_PowerDown(AFE4400_Data_t *Data);
