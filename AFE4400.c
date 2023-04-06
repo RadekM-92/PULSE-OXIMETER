@@ -436,7 +436,7 @@ static uint8_t LED_Current_mA_to_Raw(uint8_t LedCurrent)
  * Parameters - configuration parameters
  * Data - AFE4400 registers
 */
-void TxLedsCurrentInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
+static void TxLedsCurrentInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
 {
     const uint32_t LED1_Mask = 0xffff00ff;
     const uint32_t LED2_Mask = 0xffffff00;
