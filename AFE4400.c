@@ -510,6 +510,20 @@ void AFE4400_Init(void)
     
 }
 
+void ParametersInit(AFE4400_Parameters_t *Parameters)
+{
+    Parameters->PRF = 500;
+    Parameters->DutyCycle = 25;
+
+    Parameters->LED1_Current_mA = 20;
+    Parameters->LED2_Current_mA = 20;
+
+    Parameters->Cf = Cf_05pF;
+    Parameters->Rf = Rf_500k;
+
+    Parameters->CancellationCurrent = 0;
+    Parameters->STG2_GAIN = 0;
+}
 
 
 
