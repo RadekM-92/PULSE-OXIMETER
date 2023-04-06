@@ -465,4 +465,16 @@ static void TxInit(void)
     TxLedsCurrentInit(&AFE4400_Parameters, &AFE4400_Data);
 }
 
+/** Rx low pass filter init */
+static void RxLowPassFilterInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
+{
+    const uint32_t RF_Mask = 0xFFFFFFF8;
+    const uint32_t CF_Mask = 0xFFFFFF07;
+
+    Data->TIA_AMB_GAIN &= (RF_Mask & CF_Mask);
+    Data->TIA_AMB_GAIN |= ((Parameters->Cf<<3) | (Parameters->Rf));
+}
+
+
+
 
