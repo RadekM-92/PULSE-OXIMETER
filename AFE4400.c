@@ -299,15 +299,15 @@ static void DiagnosticEnable(AFE4400_Data_t *Data)
 * Parameters - configuration parameters
 * Data - AFE4400 registers
 */
-static void TimerModuleInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
+static void TimerModuleInit(void)
 {
-   if (IsTimerModuleParamOk(&Parameters))
+   if (IsTimerModuleParamOk(&AFE4400_Parameters))
    {
-        PRP_TimerInit(&Parameters, &Data);
-        ADC_TimersInit(&Parameters, &Data);
-        Convert_TimersInit(&Data);
-        Sample_TimersInit(&Data);
-        LedPulse_TimersInit(&Data);
+        PRP_TimerInit(&AFE4400_Parameters, &AFE4400_Data);
+        ADC_TimersInit(&AFE4400_Parameters, &AFE4400_Data);
+        Convert_TimersInit(&AFE4400_Data);
+        Sample_TimersInit(&AFE4400_Data);
+        LedPulse_TimersInit(&AFE4400_Data);
    }
    else
    {
@@ -507,7 +507,7 @@ void AFE4400_Init(void)
 {
     TxInit();
     RxInit();
-    
+
 }
 
 
