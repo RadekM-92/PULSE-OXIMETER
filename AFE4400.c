@@ -508,6 +508,7 @@ void AFE4400_Init(void)
     TxInit();
     RxInit();
     
+    ParametersInit(&AFE4400_Parameters);
 }
 
 void ParametersInit(AFE4400_Parameters_t *Parameters)
