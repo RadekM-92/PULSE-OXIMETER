@@ -495,5 +495,10 @@ static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t 
     }
 }
 
-
+/** Rx Stage Init */
+static void RxInit(void)
+{
+    RxLowPassFilterInit(&AFE4400_Parameters, &AFE4400_Data);
+    RxStage2Init(&AFE4400_Parameters, &AFE4400_Data);
+}
 
