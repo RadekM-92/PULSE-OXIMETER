@@ -507,7 +507,7 @@ void AFE4400_Init(void)
 {
     TxInit();
     RxInit();
-
+    TimerModuleInit();
 }
 
 
