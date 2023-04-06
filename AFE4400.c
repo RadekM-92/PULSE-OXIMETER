@@ -401,13 +401,13 @@ static void LedPulse_TimersInit(AFE4400_Data_t *Data)
 }
 
 /** AFE4400 Power down */
-void AFE4400_PowerDown(void)
+static void AFE4400_PowerDown(AFE4400_Data_t *Data)
 {
     AFE4400_Data.CONTROL2 |= PDN_AFE;
 }
 
 /** AFE4400 Power Up */
-void AFE4400_PowerUp(void)
+static void AFE4400_PowerUp(AFE4400_Data_t *Data)
 {
     AFE4400_Data.CONTROL2 &= ~PDN_AFE;
 }
@@ -509,9 +509,23 @@ void AFE4400_Init(void)
     RxInit();
     TimerModuleInit();
     
-    AFE4400_PowerUp();
+    ParametersInit(&AFE4400_Parameters);
 }
 
+void ParametersInit(AFE4400_Parameters_t *Parameters)
+{
+    Parameters->PRF = 500;
+    Parameters->DutyCycle = 25;
+
+    Parameters->LED1_Current_mA = 20;
+    Parameters->LED2_Current_mA = 20;
+
+    Parameters->Cf = Cf_05pF;
+    Parameters->Rf = Rf_500k;
+
+    Parameters->CancellationCurrent = 0;
+    Parameters->STG2_GAIN = 0;
+}
 
 
 
