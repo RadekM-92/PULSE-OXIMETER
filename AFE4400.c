@@ -502,3 +502,17 @@ static void RxInit(void)
     RxStage2Init(&AFE4400_Parameters, &AFE4400_Data);
 }
 
+/** AFE4400 Init */
+void AFE4400_Init(void)
+{
+    TxInit();
+    RxInit();
+    
+}
+
+
+
+
+
+
+
