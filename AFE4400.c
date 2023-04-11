@@ -485,7 +485,7 @@ static uint8_t LED_Current_mA_to_Raw(uint8_t LedCurrent)
     {
         LedCurrentTMP = (LedCurrent * LED_CurrentMax_Raw) / LED_CurrentMax_mA;
 
-        return (uint8_t *)LedCurrentTMP;
+        return LedCurrentTMP;
     }
     else
     {
