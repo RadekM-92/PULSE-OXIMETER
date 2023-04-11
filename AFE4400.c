@@ -275,7 +275,68 @@ typedef enum
 
 } Rf_resistances_t;
 
+/** Software reset - resets all internal registers to the default values */
+static void SoftwareReset(AFE4400_Data_t *Data);
 
+/** Diagnostic enable - At the end of the sequence, all fault status are stored in the DIAG register */
+static void DiagnosticEnable(AFE4400_Data_t *Data);
+
+/** Timer module initialization function */
+static void TimerModuleInit(void);
+
+/** TimerModuleInit - check parameters */
+static uint8_t IsTimerModuleParamOk(const AFE4400_Parameters_t *Parameters);
+
+/** Pulse Repetition Frequency Timer Init */
+static void PRP_TimerInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
+
+/** ADC TimersInit */
+static void ADC_TimersInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
+
+/** Convert TimersInit */
+static void Convert_TimersInit(AFE4400_Data_t *Data);
+
+/** Sample TimersInit
+ *  ADC_TimersInit() shall be call before call Sample_TimersInit()
+*/
+static void Sample_TimersInit(AFE4400_Data_t *Data);
+
+/** LED pulse Timers Init 
+ *  ADC_TimersInit() shall be call before call Sample_TimersInit()
+*/
+static void LedPulse_TimersInit(AFE4400_Data_t *Data);
+
+/** AFE4400 Power down */
+static void AFE4400_PowerDown(AFE4400_Data_t *Data);
+
+/** AFE4400 Power Up */
+static void AFE4400_PowerUp(AFE4400_Data_t *Data);
+
+/** LED current calculate
+ * LedCurrent - 0..50 [mA]
+ * Return value from 0 to 256
+*/
+static uint8_t LED_Current_mA_to_Raw(uint8_t LedCurrent);
+
+/** Tx LEDs current init
+ * Parameters - configuration parameters
+ * Data - AFE4400 registers
+*/
+static void TxLedsCurrentInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
+
+/** Tx Stage Init*/
+static void TxInit(void);
+
+/** Rx low pass filter init */
+static void RxLowPassFilterInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
+
+/** Rx Stage 2 init */
+static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
+
+/** Rx Stage Init */
+static void RxInit(void);
+
+void ParametersInit(AFE4400_Parameters_t *Parameters);
 
 
 AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
