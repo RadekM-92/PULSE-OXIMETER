@@ -511,11 +511,11 @@ static void TxLedsCurrentInit(const AFE4400_Parameters_t *Parameters, AFE4400_Da
     {
         Data->LEDCNTRL &= (LED1_Mask & LED2_Mask);
         Data->LEDCNTRL |= ((LED1_CurrentRaw << 8) | LED2_CurrentRaw);
-        Data->LEDCNTRL |= (1 << LEDCUROFF);
+        Data->LEDCNTRL |= LEDCUROFF;
     }
     else
     {
-        Data->LEDCNTRL &= ~(1 << LEDCUROFF);
+        Data->LEDCNTRL &= ~LEDCUROFF;
     }
 
 }
