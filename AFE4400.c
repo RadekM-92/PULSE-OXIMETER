@@ -505,11 +505,11 @@ static void RxInit(void)
 /** AFE4400 Init */
 void AFE4400_Init(void)
 {
+    ParametersInit(&AFE4400_Parameters);
+
     TxInit();
     RxInit();
     TimerModuleInit();
-    
-    ParametersInit(&AFE4400_Parameters);
 }
 
 void ParametersInit(AFE4400_Parameters_t *Parameters)
