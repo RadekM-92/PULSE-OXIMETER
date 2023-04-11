@@ -397,7 +397,7 @@ static uint8_t IsTimerModuleParamOk(const AFE4400_Parameters_t *Parameters)
 */
 static void PRP_TimerInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
 {
-     Data->PRPCOUNT = (uint16_t *)(AFE4400_CLOCK_FRQ / Parameters->PRF - 1);
+     Data->PRPCOUNT = (AFE4400_CLOCK_FRQ / Parameters->PRF - 1);
 }
 
 /** ADC TimersInit 
@@ -408,13 +408,13 @@ static void PRP_TimerInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t
 static void ADC_TimersInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
 {
     Data->ADCRSTSTCT0 = 0;
-    Data->ADCRSTENDCT0 = (uint16_t *)(Data->ADCRSTSTCT0 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT1 = (uint16_t *)( Data->ADCRSTSTCT0 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
-    Data->ADCRSTENDCT1 = (uint16_t *)( Data->ADCRSTSTCT1 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT2 = (uint16_t *)( Data->ADCRSTSTCT1 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
-    Data->ADCRSTENDCT2 = (uint16_t *)( Data->ADCRSTSTCT2 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT3 = (uint16_t *)( Data->ADCRSTSTCT2 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
-    Data->ADCRSTENDCT3 = (uint16_t *)( Data->ADCRSTSTCT3 + ADC_Reset_ClockCycle);
+    Data->ADCRSTENDCT0  = ( Data->ADCRSTSTCT0 + ADC_Reset_ClockCycle);
+    Data->ADCRSTSTCT1   = ( Data->ADCRSTSTCT0 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
+    Data->ADCRSTENDCT1  = ( Data->ADCRSTSTCT1 + ADC_Reset_ClockCycle);
+    Data->ADCRSTSTCT2   = ( Data->ADCRSTSTCT1 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
+    Data->ADCRSTENDCT2  = ( Data->ADCRSTSTCT2 + ADC_Reset_ClockCycle);
+    Data->ADCRSTSTCT3   = ( Data->ADCRSTSTCT2 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
+    Data->ADCRSTENDCT3  = ( Data->ADCRSTSTCT3 + ADC_Reset_ClockCycle);
 }
 
 /** Convert TimersInit
@@ -422,14 +422,14 @@ static void ADC_TimersInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_
 */
 static void Convert_TimersInit(AFE4400_Data_t *Data)
 {
-    Data->LED2CONVST = (uint16_t *)(Data->ADCRSTENDCT0 + 1);
-    Data->LED2CONVEND = (uint16_t *)(Data->ADCRSTSTCT1 - 1);
-    Data->ALED2CONVST = (uint16_t *)(Data->ADCRSTENDCT1 + 1);
-    Data->ALED2CONVEND = (uint16_t *)(Data->ADCRSTSTCT2 - 1);
-    Data->LED1CONVST = (uint16_t *)(Data->ADCRSTENDCT2 + 1);
-    Data->LED1CONVEND = (uint16_t *)(Data->ADCRSTSTCT3 - 1);
-    Data->ALED1CONVST = (uint16_t *)(Data->ADCRSTENDCT3 + 1);
-    Data->ALED1CONVEND = Data->PRPCOUNT;
+    Data->LED2CONVST    = (Data->ADCRSTENDCT0 + 1);
+    Data->LED2CONVEND   = (Data->ADCRSTSTCT1 - 1);
+    Data->ALED2CONVST   = (Data->ADCRSTENDCT1 + 1);
+    Data->ALED2CONVEND  = (Data->ADCRSTSTCT2 - 1);
+    Data->LED1CONVST    = (Data->ADCRSTENDCT2 + 1);
+    Data->LED1CONVEND   = (Data->ADCRSTSTCT3 - 1);
+    Data->ALED1CONVST   = (Data->ADCRSTENDCT3 + 1);
+    Data->ALED1CONVEND  = Data->PRPCOUNT;
 }
 
 /** Sample TimersInit
@@ -437,17 +437,17 @@ static void Convert_TimersInit(AFE4400_Data_t *Data)
 */
 static void Sample_TimersInit(AFE4400_Data_t *Data)
 {
-    Data->ALED2STC = (uint16_t *)(Data->ADCRSTSTCT0 + 50);
-    Data->ALED2ENDC = (uint16_t *)(Data->ADCRSTSTCT1 - 2);
+    Data->ALED2STC  = (Data->ADCRSTSTCT0 + 50);
+    Data->ALED2ENDC = (Data->ADCRSTSTCT1 - 2);
 
-    Data->LED1STC = (uint16_t *)(Data->ADCRSTSTCT1 + 50);
-    Data->LED1ENDC = (uint16_t *)(Data->ADCRSTSTCT2 - 2);
+    Data->LED1STC   = (Data->ADCRSTSTCT1 + 50);
+    Data->LED1ENDC  = (Data->ADCRSTSTCT2 - 2);
 
-    Data->ALED1STC = (uint16_t *)(Data->ADCRSTSTCT2 + 50);
-    Data->ALED1ENDC = (uint16_t *)(Data->ADCRSTSTCT3 - 2);
+    Data->ALED1STC  = (Data->ADCRSTSTCT2 + 50);
+    Data->ALED1ENDC = (Data->ADCRSTSTCT3 - 2);
     
-    Data->LED2STC = (uint16_t *)(Data->ADCRSTSTCT3 + 50);
-    Data->LED2ENDC = (uint16_t *)(Data->PRPCOUNT - 1);
+    Data->LED2STC   = (Data->ADCRSTSTCT3 + 50);
+    Data->LED2ENDC  = (Data->PRPCOUNT - 1);
 }
 
 /** LED pulse Timers Init 
@@ -455,10 +455,10 @@ static void Sample_TimersInit(AFE4400_Data_t *Data)
 */
 static void LedPulse_TimersInit(AFE4400_Data_t *Data)
 {
-    Data->LED2LEDSTC = (uint16_t *)(Data->ADCRSTSTCT3);
-    Data->LED2LEDENDC = (uint16_t *)(Data->ALED1CONVEND);
-    Data->LED1LEDSTC = (uint16_t *)(Data->ADCRSTSTCT1);
-    Data->LED1LEDENDC = (uint16_t *)(Data->ALED2CONVEND);
+    Data->LED2LEDSTC    = (Data->ADCRSTSTCT3);
+    Data->LED2LEDENDC   = (Data->ALED1CONVEND);
+    Data->LED1LEDSTC    = (Data->ADCRSTSTCT1);
+    Data->LED1LEDENDC   = (Data->ALED2CONVEND);
 }
 
 /** AFE4400 Power down */
