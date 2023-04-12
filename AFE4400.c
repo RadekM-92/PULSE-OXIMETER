@@ -1,5 +1,4 @@
 
-
 #include "AFE4400.h"
 
 /**
@@ -381,7 +380,7 @@ static void TimerModuleInit(void)
 */
 static uint8_t IsTimerModuleParamOk(const AFE4400_Parameters_t *Parameters)
 {
-     if ((0 != Parameters->PRF) && (0 < Parameters->DutyCycle) && (100 > Parameters->DutyCycle))
+     if ((0 != Parameters->PRF) && (0 < Parameters->DutyCycle) && (25 >= Parameters->DutyCycle))
      {
         return 1;
      }
@@ -409,11 +408,11 @@ static void ADC_TimersInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_
 {
     Data->ADCRSTSTCT0 = 0;
     Data->ADCRSTENDCT0  = ( Data->ADCRSTSTCT0 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT1   = ( Data->ADCRSTSTCT0 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
+    Data->ADCRSTSTCT1   = ( Data->ADCRSTSTCT0 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * Parameters->DutyCycle) / 100 );
     Data->ADCRSTENDCT1  = ( Data->ADCRSTSTCT1 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT2   = ( Data->ADCRSTSTCT1 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
+    Data->ADCRSTSTCT2   = ( Data->ADCRSTSTCT1 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * Parameters->DutyCycle) / 100 );
     Data->ADCRSTENDCT2  = ( Data->ADCRSTSTCT2 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT3   = ( Data->ADCRSTSTCT2 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * (Parameters->DutyCycle / 100)));
+    Data->ADCRSTSTCT3   = ( Data->ADCRSTSTCT2 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * Parameters->DutyCycle) / 100 );
     Data->ADCRSTENDCT3  = ( Data->ADCRSTSTCT3 + ADC_Reset_ClockCycle);
 }
 
