@@ -539,8 +539,8 @@ static void RxLowPassFilterInit(const AFE4400_Parameters_t *Parameters, AFE4400_
 /** Rx Stage 2 init */
 static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
 {
-    uint32_t SG2GAIN_Mask   = 0xFFFFF8FF;
-    uint32_t AMBDAC_Mask    = 0xFFF8FFFF;
+   const uint32_t SG2GAIN_Mask   = 0xFFFFF8FF;
+   const uint32_t AMBDAC_Mask    = 0xFFF8FFFF;
 
     if (0 <= Parameters->CancellationCurrent && RxStage2_CurrentMax >= Parameters->CancellationCurrent)
     {
@@ -581,13 +581,12 @@ void ParametersInit(AFE4400_Parameters_t *Parameters)
     Parameters->LED1_Current_mA = 20;
     Parameters->LED2_Current_mA = 20;
 
-    Parameters->Cf = Cf_05pF;
-    Parameters->Rf = Rf_500k;
+    Parameters->Cf = Cf_25pF;
+    Parameters->Rf = Rf_10k;
 
-    Parameters->CancellationCurrent = 0;
-    Parameters->STG2_GAIN = 0;
+    Parameters->CancellationCurrent = 5;
+    Parameters->STG2_GAIN = 3;
 }
-
 
 
 
