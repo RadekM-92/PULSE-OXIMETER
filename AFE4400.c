@@ -581,13 +581,12 @@ void ParametersInit(AFE4400_Parameters_t *Parameters)
     Parameters->LED1_Current_mA = 20;
     Parameters->LED2_Current_mA = 20;
 
-    Parameters->Cf = Cf_05pF;
-    Parameters->Rf = Rf_500k;
+    Parameters->Cf = Cf_25pF;
+    Parameters->Rf = Rf_10k;
 
-    Parameters->CancellationCurrent = 0;
-    Parameters->STG2_GAIN = 0;
+    Parameters->CancellationCurrent = 5;
+    Parameters->STG2_GAIN = 3;
 }
-
 
 
 
