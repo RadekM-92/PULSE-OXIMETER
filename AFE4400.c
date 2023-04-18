@@ -539,8 +539,8 @@ static void RxLowPassFilterInit(const AFE4400_Parameters_t *Parameters, AFE4400_
 /** Rx Stage 2 init */
 static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
 {
-    uint32_t SG2GAIN_Mask   = 0xFFFFF8FF;
-    uint32_t AMBDAC_Mask    = 0xFFF8FFFF;
+   const uint32_t SG2GAIN_Mask   = 0xFFFFF8FF;
+   const uint32_t AMBDAC_Mask    = 0xFFF8FFFF;
 
     if (0 <= Parameters->CancellationCurrent && RxStage2_CurrentMax >= Parameters->CancellationCurrent)
     {
