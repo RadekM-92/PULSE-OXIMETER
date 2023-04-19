@@ -337,6 +337,8 @@ static void RxInit(void);
 
 void ParametersInit(AFE4400_Parameters_t *Parameters);
 
+/** Two's complement to decimal conversion */
+int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits);
 
 AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
 
@@ -588,7 +590,24 @@ void ParametersInit(AFE4400_Parameters_t *Parameters)
     Parameters->STG2_GAIN = 3;
 }
 
+/** Two's complement to decimal conversion */
+int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits)
+{
+    uint32_t SignMask;
+    uint8_t PositiveSign;
 
+    SignMask = (1<<n_bits);
+    PositiveSign = (TwosVal & SignMask) ? 0 : 1;
+
+    if (PositiveSign)
+    {
+        return TwosVal;
+    }
+    else
+    {
+        return -(~TwosVal + 1);
+    }
+}
 
 
 
