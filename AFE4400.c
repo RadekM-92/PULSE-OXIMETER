@@ -595,17 +595,24 @@ int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits)
 {
     uint32_t SignMask;
     uint8_t PositiveSign;
+    int8_t ShiftValue;
 
-    SignMask = (1<<n_bits);
+    ShiftValue = sizeof(TwosVal) * 8 - n_bits;
+
+    TwosVal = (TwosVal << ShiftValue);
+
+    SignMask = (1 << (n_bits + ShiftValue - 1));
+    
     PositiveSign = (TwosVal & SignMask) ? 0 : 1;
 
     if (PositiveSign)
     {
-        return TwosVal;
+       return (int32_t) TwosVal / (1 << ShiftValue);
     }
     else
-    {
-        return -(~TwosVal + 1);
+    {   
+        return (int32_t)(-(~TwosVal + 1)) / (1 << ShiftValue);
+      
     }
 }
 
