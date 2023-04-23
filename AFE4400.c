@@ -274,6 +274,17 @@ typedef enum
 
 } Rf_resistances_t;
 
+/** LEDs Real measurement data */
+typedef struct
+{
+    float LED2_On;          //  Red LED On Sample
+    float LED2_Ambient;     //  Ambient sample after Red LED Off
+    float LED1_On;          //  IR Led On Sample
+    float LED1_Ambient;     //  Ambient sample after IR LED Off
+} AFE4400_LEDs_RealDataADC;
+
+
+
 /** Software reset - resets all internal registers to the default values */
 static void SoftwareReset(AFE4400_Data_t *Data);
 
