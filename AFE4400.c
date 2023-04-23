@@ -630,6 +630,6 @@ float ADC_RawToReal(int32_t ADC_RawVal)
 {
     const int16_t Raw_10mV = 17476;
 
-    return (float)(ADC_RawVal / Raw_10mV) / 100.0;
+    return (float)(ADC_RawVal / Raw_10mV) / 100.0f;
 }
 
