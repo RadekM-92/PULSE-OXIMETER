@@ -281,7 +281,7 @@ typedef struct
     float LED2_Ambient;     //  Ambient sample after Red LED Off
     float LED1_On;          //  IR Led On Sample
     float LED1_Ambient;     //  Ambient sample after IR LED Off
-} AFE4400_LEDs_RealDataADC;
+} AFE4400_LEDs_RealDataADC_t;
 
 
 
@@ -357,9 +357,15 @@ int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits);
 */
 float ADC_RawToReal(int32_t ADC_RawVal);
 
-AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
+/** LEDs real ADC measurement data update */
+void RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
+
+
+AFE4400_Data_t AFE4400_Data;                /** AFE4400 All registers data */
 
 AFE4400_Parameters_t AFE4400_Parameters;    /** AFE4400 - Parameters */
+
+
 
 
 /** Software reset - resets all internal registers to the default values */
