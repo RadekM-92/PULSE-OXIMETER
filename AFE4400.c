@@ -274,6 +274,17 @@ typedef enum
 
 } Rf_resistances_t;
 
+/** LEDs Real measurement data */
+typedef struct
+{
+    float LED2_On;          //  Red LED On Sample
+    float LED2_Ambient;     //  Ambient sample after Red LED Off
+    float LED1_On;          //  IR Led On Sample
+    float LED1_Ambient;     //  Ambient sample after IR LED Off
+} AFE4400_LEDs_RealDataADC_t;
+
+
+
 /** Software reset - resets all internal registers to the default values */
 static void SoftwareReset(AFE4400_Data_t *Data);
 
@@ -337,10 +348,24 @@ static void RxInit(void);
 
 void ParametersInit(AFE4400_Parameters_t *Parameters);
 
+/** Two's complement to decimal conversion */
+int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits);
 
-AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
+/** ADC scaling 
+ * -2097152 -> -1.2[V]
+ * 2097151  ->  1.2[V]
+*/
+float ADC_RawToReal(int32_t ADC_RawVal);
+
+/** LEDs real ADC measurement data update */
+void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
+
+
+AFE4400_Data_t AFE4400_Data;                /** AFE4400 All registers data */
 
 AFE4400_Parameters_t AFE4400_Parameters;    /** AFE4400 - Parameters */
+
+AFE4400_LEDs_RealDataADC_t AFE4400_LEDs;    /** AFE4400 - LEDs real ADC Data */
 
 
 /** Software reset - resets all internal registers to the default values */
@@ -588,7 +613,50 @@ void ParametersInit(AFE4400_Parameters_t *Parameters)
     Parameters->STG2_GAIN = 3;
 }
 
+/** Two's complement to decimal conversion */
+int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits)
+{
+    uint32_t SignMask;
+    uint8_t PositiveSign;
+    int8_t ShiftValue;
 
+    ShiftValue = sizeof(TwosVal) * 8 - n_bits;
 
+    TwosVal = (TwosVal << ShiftValue);
 
+    SignMask = (1 << (n_bits + ShiftValue - 1));
+    
+    PositiveSign = (TwosVal & SignMask) ? 0 : 1;
 
+    if (PositiveSign)
+    {
+       return (int32_t) TwosVal / (1 << ShiftValue);
+    }
+    else
+    {   
+        return (int32_t)(-(~TwosVal + 1)) / (1 << ShiftValue);
+      
+    }
+}
+
+/** ADC scaling
+ * -2097152 -> -1.2[V]
+ * 2097151  ->  1.2[V]
+*/
+float ADC_RawToReal(int32_t ADC_RawVal)
+{
+    const int16_t Raw_10mV = 17476;
+
+    return (float)(ADC_RawVal / Raw_10mV) / 100.0f;
+}
+
+/** LEDs real ADC measurement data update */
+void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs)
+{
+    const uint8_t ADC_22bit = 22;
+
+    LEDs->LED2_On       = ADC_RawToReal(TwosCompToDec(Data->LED2VAL, ADC_22bit));
+    LEDs->LED2_Ambient  = ADC_RawToReal(TwosCompToDec(Data->LED2_ALED2VAL, ADC_22bit));
+    LEDs->LED1_On       = ADC_RawToReal(TwosCompToDec(Data->LED1VAL, ADC_22bit));
+    LEDs->LED1_Ambient  = ADC_RawToReal(TwosCompToDec(Data->LED1_ALED1VAL, ADC_22bit));
+}
