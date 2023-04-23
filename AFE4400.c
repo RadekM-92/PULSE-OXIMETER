@@ -365,7 +365,7 @@ AFE4400_Data_t AFE4400_Data;                /** AFE4400 All registers data */
 
 AFE4400_Parameters_t AFE4400_Parameters;    /** AFE4400 - Parameters */
 
-
+AFE4400_LEDs_RealDataADC_t AFE4400_LEDs;    /** AFE4400 - LEDs real ADC Data */
 
 
 /** Software reset - resets all internal registers to the default values */
