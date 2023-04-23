@@ -340,6 +340,12 @@ void ParametersInit(AFE4400_Parameters_t *Parameters);
 /** Two's complement to decimal conversion */
 int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits);
 
+/** ADC scaling 
+ * -2097152 -> -1.2[V]
+ * 2097151  ->  1.2[V]
+*/
+float ADC_RawToReal(int32_t ADC_RawVal);
+
 AFE4400_Data_t AFE4400_Data;    /** AFE4400 All registers data */
 
 AFE4400_Parameters_t AFE4400_Parameters;    /** AFE4400 - Parameters */
@@ -616,5 +622,14 @@ int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits)
     }
 }
 
+/** ADC scaling
+ * -2097152 -> -1.2[V]
+ * 2097151  ->  1.2[V]
+*/
+float ADC_RawToReal(int32_t ADC_RawVal)
+{
+    const int16_t Raw_10mV = 17476;
 
+    return (float)(ADC_RawVal / Raw_10mV) / 100.0;
+}
 
