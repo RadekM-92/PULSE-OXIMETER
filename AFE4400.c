@@ -358,7 +358,7 @@ int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits);
 float ADC_RawToReal(int32_t ADC_RawVal);
 
 /** LEDs real ADC measurement data update */
-void RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
+void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
 
 
 AFE4400_Data_t AFE4400_Data;                /** AFE4400 All registers data */
@@ -650,3 +650,13 @@ float ADC_RawToReal(int32_t ADC_RawVal)
     return (float)(ADC_RawVal / Raw_10mV) / 100.0f;
 }
 
+/** LEDs real ADC measurement data update */
+void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs)
+{
+    const uint8_t ADC_22bit = 22;
+
+    LEDs->LED2_On       = ADC_RawToReal(TwosCompToDec(Data->LED2VAL, ADC_22bit));
+    LEDs->LED2_Ambient  = ADC_RawToReal(TwosCompToDec(Data->LED2_ALED2VAL, ADC_22bit));
+    LEDs->LED1_On       = ADC_RawToReal(TwosCompToDec(Data->LED1VAL, ADC_22bit));
+    LEDs->LED1_Ambient  = ADC_RawToReal(TwosCompToDec(Data->LED1_ALED1VAL, ADC_22bit));
+}
