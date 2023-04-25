@@ -349,7 +349,7 @@ static void RxInit(void);
 void ParametersInit(AFE4400_Parameters_t *Parameters);
 
 /** Two's complement to decimal conversion */
-int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits);
+int32_t TwosCompToDec(uint32_t TwosVal, uint32_t n_bits);
 
 /** ADC scaling 
  * -2097152 -> -1.2[V]
@@ -614,28 +614,18 @@ void ParametersInit(AFE4400_Parameters_t *Parameters)
 }
 
 /** Two's complement to decimal conversion */
-int32_t TwosCompToDec(uint32_t TwosVal, uint8_t n_bits)
+int32_t TwosCompToDec(uint32_t TwosVal, uint32_t n_bits)
 {
-    uint32_t SignMask;
-    uint8_t PositiveSign;
-    int8_t ShiftValue;
+    uint32_t sign_mask = 1 << (n_bits - 1);
 
-    ShiftValue = sizeof(TwosVal) * 8 - n_bits;
-
-    TwosVal = (TwosVal << ShiftValue);
-
-    SignMask = (1 << (n_bits + ShiftValue - 1));
-    
-    PositiveSign = (TwosVal & SignMask) ? 0 : 1;
-
-    if (PositiveSign)
+    if (TwosVal & sign_mask)
     {
-       return (int32_t) TwosVal / (1 << ShiftValue);
+        uint32_t mask_neg = ~((1 << n_bits) - 1);
+        return (int32_t)(TwosVal | mask_neg);
     }
     else
-    {   
-        return (int32_t)(-(~TwosVal + 1)) / (1 << ShiftValue);
-      
+    {
+        return TwosVal;
     }
 }
 
