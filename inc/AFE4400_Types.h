@@ -286,4 +286,15 @@ typedef struct
 } AFE4400_LEDs_RealDataADC_t;
 
 
+extern AFE4400_Data_t AFE4400_Data;                /** AFE4400 All registers data */
+
+extern AFE4400_Parameters_t AFE4400_Parameters;    /** AFE4400 - Parameters */
+
+extern AFE4400_LEDs_RealDataADC_t AFE4400_LEDs;    /** AFE4400 - LEDs real ADC Data */
+
+/** Tx Stage Init*/
+extern void TxInit(void);
+
+
+
 #endif
