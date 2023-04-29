@@ -295,6 +295,9 @@ extern AFE4400_LEDs_RealDataADC_t AFE4400_LEDs;    /** AFE4400 - LEDs real ADC D
 /** Tx Stage Init*/
 extern void TxInit(void);
 
+/** Rx Stage Init */
+extern void RxInit(void);
+
 
 
 #endif
