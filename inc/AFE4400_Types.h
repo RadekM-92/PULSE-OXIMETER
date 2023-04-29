@@ -298,6 +298,8 @@ extern void TxInit(void);
 /** Rx Stage Init */
 extern void RxInit(void);
 
+/** Timer module initialization function */
+extern void TimerModuleInit(void);
 
 
 #endif

@@ -6,47 +6,17 @@ AFE4400_Data_t AFE4400_Data = {0};                /** AFE4400 All registers data
 AFE4400_Parameters_t AFE4400_Parameters = {0};    /** AFE4400 - Parameters */
 AFE4400_LEDs_RealDataADC_t AFE4400_LEDs = {0};    /** AFE4400 - LEDs real ADC Data */
 
-
 /** Software reset - resets all internal registers to the default values */
 static void SoftwareReset(AFE4400_Data_t *Data);
 
 /** Diagnostic enable - At the end of the sequence, all fault status are stored in the DIAG register */
 static void DiagnosticEnable(AFE4400_Data_t *Data);
 
-/** Timer module initialization function */
-static void TimerModuleInit(void);
-
-/** TimerModuleInit - check parameters */
-static uint8_t IsTimerModuleParamOk(const AFE4400_Parameters_t *Parameters);
-
-/** Pulse Repetition Frequency Timer Init */
-static void PRP_TimerInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
-
-/** ADC TimersInit */
-static void ADC_TimersInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
-
-/** Convert TimersInit */
-static void Convert_TimersInit(AFE4400_Data_t *Data);
-
-/** Sample TimersInit
- *  ADC_TimersInit() shall be call before call Sample_TimersInit()
-*/
-static void Sample_TimersInit(AFE4400_Data_t *Data);
-
-/** LED pulse Timers Init 
- *  ADC_TimersInit() shall be call before call Sample_TimersInit()
-*/
-static void LedPulse_TimersInit(AFE4400_Data_t *Data);
-
 /** AFE4400 Power down */
 static void AFE4400_PowerDown(AFE4400_Data_t *Data);
 
 /** AFE4400 Power Up */
 static void AFE4400_PowerUp(AFE4400_Data_t *Data);
-
-
-
-
 
 void ParametersInit(AFE4400_Parameters_t *Parameters);
 
@@ -62,10 +32,6 @@ float ADC_RawToReal(int32_t ADC_RawVal);
 /** LEDs real ADC measurement data update */
 void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
 
-
-
-
-
 /** Software reset - resets all internal registers to the default values */
 static void SoftwareReset(AFE4400_Data_t *Data)
 {
@@ -76,111 +42,6 @@ static void SoftwareReset(AFE4400_Data_t *Data)
 static void DiagnosticEnable(AFE4400_Data_t *Data)
 {
     Data->CONTROL0 |= DIAG_EN;
-}
-
-/** Timer module initialization function
-* Parameters - configuration parameters
-* Data - AFE4400 registers
-*/
-static void TimerModuleInit(void)
-{
-   if (IsTimerModuleParamOk(&AFE4400_Parameters))
-   {
-        PRP_TimerInit(&AFE4400_Parameters, &AFE4400_Data);
-        ADC_TimersInit(&AFE4400_Parameters, &AFE4400_Data);
-        Convert_TimersInit(&AFE4400_Data);
-        Sample_TimersInit(&AFE4400_Data);
-        LedPulse_TimersInit(&AFE4400_Data);
-   }
-   else
-   {
-    ;
-   }
-}
-
-/** TimerModuleInit - check parameters
-* Parameters - configuration parameters
-*/
-static uint8_t IsTimerModuleParamOk(const AFE4400_Parameters_t *Parameters)
-{
-     if ((0 != Parameters->PRF) && (0 < Parameters->DutyCycle) && (25 >= Parameters->DutyCycle))
-     {
-        return 1;
-     }
-     else
-     {
-        return 0;
-     }
-}
-
-/** Pulse Repetition Frequency Timer Init
-* Parameters - configuration parameters
-* Data - AFE4400 registers
-*/
-static void PRP_TimerInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
-{
-     Data->PRPCOUNT = (AFE4400_CLOCK_FRQ / Parameters->PRF - 1);
-}
-
-/** ADC TimersInit 
- * Parameters - configuration parameters
- * Data - AFE4400 registers
- * 
-*/
-static void ADC_TimersInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data)
-{
-    Data->ADCRSTSTCT0 = 0;
-    Data->ADCRSTENDCT0  = ( Data->ADCRSTSTCT0 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT1   = ( Data->ADCRSTSTCT0 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * Parameters->DutyCycle) / 100 );
-    Data->ADCRSTENDCT1  = ( Data->ADCRSTSTCT1 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT2   = ( Data->ADCRSTSTCT1 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * Parameters->DutyCycle) / 100 );
-    Data->ADCRSTENDCT2  = ( Data->ADCRSTSTCT2 + ADC_Reset_ClockCycle);
-    Data->ADCRSTSTCT3   = ( Data->ADCRSTSTCT2 + ((AFE4400_CLOCK_FRQ / Parameters->PRF) * Parameters->DutyCycle) / 100 );
-    Data->ADCRSTENDCT3  = ( Data->ADCRSTSTCT3 + ADC_Reset_ClockCycle);
-}
-
-/** Convert TimersInit
-* ADC_TimersInit() shall be call before call Convert_TimersInit()
-*/
-static void Convert_TimersInit(AFE4400_Data_t *Data)
-{
-    Data->LED2CONVST    = (Data->ADCRSTENDCT0 + 1);
-    Data->LED2CONVEND   = (Data->ADCRSTSTCT1 - 1);
-    Data->ALED2CONVST   = (Data->ADCRSTENDCT1 + 1);
-    Data->ALED2CONVEND  = (Data->ADCRSTSTCT2 - 1);
-    Data->LED1CONVST    = (Data->ADCRSTENDCT2 + 1);
-    Data->LED1CONVEND   = (Data->ADCRSTSTCT3 - 1);
-    Data->ALED1CONVST   = (Data->ADCRSTENDCT3 + 1);
-    Data->ALED1CONVEND  = Data->PRPCOUNT;
-}
-
-/** Sample TimersInit
- *  ADC_TimersInit() shall be call before call Sample_TimersInit()
-*/
-static void Sample_TimersInit(AFE4400_Data_t *Data)
-{
-    Data->ALED2STC  = (Data->ADCRSTSTCT0 + 50);
-    Data->ALED2ENDC = (Data->ADCRSTSTCT1 - 2);
-
-    Data->LED1STC   = (Data->ADCRSTSTCT1 + 50);
-    Data->LED1ENDC  = (Data->ADCRSTSTCT2 - 2);
-
-    Data->ALED1STC  = (Data->ADCRSTSTCT2 + 50);
-    Data->ALED1ENDC = (Data->ADCRSTSTCT3 - 2);
-    
-    Data->LED2STC   = (Data->ADCRSTSTCT3 + 50);
-    Data->LED2ENDC  = (Data->PRPCOUNT - 1);
-}
-
-/** LED pulse Timers Init 
- *  ADC_TimersInit() shall be call before call Sample_TimersInit()
-*/
-static void LedPulse_TimersInit(AFE4400_Data_t *Data)
-{
-    Data->LED2LEDSTC    = (Data->ADCRSTSTCT3);
-    Data->LED2LEDENDC   = (Data->ALED1CONVEND);
-    Data->LED1LEDSTC    = (Data->ADCRSTSTCT1);
-    Data->LED1LEDENDC   = (Data->ALED2CONVEND);
 }
 
 /** AFE4400 Power down */
@@ -194,16 +55,6 @@ static void AFE4400_PowerUp(AFE4400_Data_t *Data)
 {
     AFE4400_Data.CONTROL2 &= ~PDN_AFE;
 }
-
-
-
-
-
-
-
-
-
-
 
 /** AFE4400 Init */
 void AFE4400_Init(void)
