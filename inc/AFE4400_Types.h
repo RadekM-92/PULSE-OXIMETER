@@ -298,7 +298,7 @@ extern void TxInit(void);
 /** Rx Stage Init */
 extern void RxInit(void);
 /** LEDs real ADC measurement data update */
-extern LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
+extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
 
 /** Timer module initialization function */
 extern void TimerModuleInit(void);

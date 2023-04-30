@@ -61,7 +61,7 @@ static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t 
 }
 
 /** LEDs real ADC measurement data update */
-extern LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs)
+extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs)
 {
     const uint8_t ADC_22bit = 22;
 
