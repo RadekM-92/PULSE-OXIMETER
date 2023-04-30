@@ -303,6 +303,9 @@ extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_Rea
 /** Timer module initialization function */
 extern void TimerModuleInit(void);
 
+/** Configuration of parameters */
+extern void ParametersInit(AFE4400_Parameters_t *Parameters);
+
 
 
 #endif
