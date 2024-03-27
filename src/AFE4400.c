@@ -63,5 +63,36 @@ uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint
 
 uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size)
 {
+    uint8_t RegAdd = (uint8_t) Address;
+    uint8_t ReadEnBuf[] = {CONTROL0, 0x00, 0x00, SPI_READ};
+    uint8_t RxBuf[3] = {0};
+    uint8_t i, n, k;
+    uint8_t ReadStatus = 0U;
+    uint8_t WriteStatus = 0U;
+
+    WriteStatus = HAL_SPI_Transmit(&hspi2, (uint8_t*) ReadEnBuf, sizeof(ReadEnBuf), 100);
     
+    if (HAL_OK == WriteStatus)
+    {
+        for(n=0; n<Size; n++)
+        {
+            WriteStatus = HAL_SPI_Transmit(&hspi2, (uint8_t*) &RegAdd, 1U, 100);
+            if (HAL_OK == WriteStatus)
+            {
+                ReadStatus = HAL_SPI_Receive(&hspi2, (uint8_t*) RxBuf, sizeof(RxBuf), 100);
+                if (HAL_OK == ReadStatus)
+                {
+                    Data[n] = 0;
+                    for(i=sizeof(RxBuf), k=0; i>0; i--, k++)
+                    {
+                        Data[n] |= RxBuf[i-1] << 8*k;
+                    }
+                }
+            }
+        }
+    }
+
+ 
+
+    return (0 == ReadStatus && 0 == WriteStatus)? 0U : 1U;
 }
