@@ -61,7 +61,9 @@ typedef enum
     LED1VAL		 	 =	0x2C,   /** LED1 digital value */
     ALED1VAL		 =	0x2D,   /** LED1 ambient digital value */
     LED2_ALED2VAL	 =	0x2E,   /** (LED2 – LED2 ambient) digital value */
-    LED1_ALED1VAL	 =	0x2F 	/** (LED1 – LED1 ambient) digital value */
+    LED1_ALED1VAL	 =	0x2F, 	/** (LED1 – LED1 ambient) digital value */
+
+    DIAG             =  0x30    /** Diagnostics Flag Register */
 } AFE4400_REGS_ADDRESS_t;
 
 /**
