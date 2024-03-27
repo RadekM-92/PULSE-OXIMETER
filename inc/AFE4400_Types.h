@@ -306,6 +306,6 @@ extern void TimerModuleInit(void);
 /** Configuration of parameters */
 extern void ParametersInit(AFE4400_Parameters_t *Parameters);
 
-static uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint8_t Size);
+extern uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint8_t Size);
 
 #endif
