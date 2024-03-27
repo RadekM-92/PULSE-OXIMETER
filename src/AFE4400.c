@@ -35,10 +35,11 @@ uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Si
     uint8_t WriteEnBuf[] = {CONTROL0, 0x00, 0x00, 0x00};
     uint8_t TxBuf[4] = {0};
     uint8_t i;
+    int8_t WriteStatus = 0U;
 
     if (HAL_OK != HAL_SPI_Transmit(&hspi2, (uint8_t*) WriteEnBuf, sizeof(WriteEnBuf), 100))
     {
-        // error handler
+        WriteStatus = 1U;
     }
 
     for(i=0; i<sizeof(TxBuf); i++)
@@ -54,6 +55,8 @@ uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Si
 
     if (HAL_OK != HAL_SPI_Transmit(&hspi2, (uint8_t*) TxBuf, sizeof(TxBuf), 100))
     {
-        // error handler
+        WriteStatus = 1U;
     }
+
+    return WriteStatus;
 }
