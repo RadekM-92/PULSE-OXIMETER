@@ -60,3 +60,8 @@ uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint
     }
     return WriteStatus;
 }
+
+uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size)
+{
+    
+}
