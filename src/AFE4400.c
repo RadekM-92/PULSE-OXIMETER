@@ -1,4 +1,7 @@
 
+#include <stdio.h>
+#include <string.h>
+
 #include "AFE4400.h"
 #include "AFE4400_Types.h"
 
@@ -80,6 +83,7 @@ uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Siz
             WriteStatus = HAL_SPI_Transmit(&hspi2, (uint8_t*) &RegAdd, 1U, 100);
             if (HAL_OK == WriteStatus)
             {
+                memset(RxBuf, 0x00, sizeof(RxBuf));
                 ReadStatus = HAL_SPI_Receive(&hspi2, (uint8_t*) RxBuf, sizeof(RxBuf), 100);
                 if (HAL_OK == ReadStatus)
                 {
