@@ -23,6 +23,8 @@ static uint8_t LED_Current_mA_to_Raw(uint8_t LedCurrent);
 extern void TxInit(void)
 {
     TxLedsCurrentInit(&AFE4400_Parameters, &AFE4400_Data);
+
+    AFE4400_Write(LEDCNTRL, &AFE4400_Data.LEDCNTRL, 1U);
 }
 
 /** Tx LEDs current init
