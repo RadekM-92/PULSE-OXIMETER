@@ -28,6 +28,8 @@ extern void RxInit(void)
 {
     RxLowPassFilterInit(&AFE4400_Parameters, &AFE4400_Data);
     RxStage2Init(&AFE4400_Parameters, &AFE4400_Data);
+
+    AFE4400_Write(TIA_AMB_GAIN, &AFE4400_Data.TIA_AMB_GAIN, 1U);
 }
 
 /** Rx low pass filter init */
