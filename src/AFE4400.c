@@ -26,17 +26,34 @@ void AFE4400_Init(void)
     TxInit();
     RxInit();
     TimerModuleInit();
+    uint32_t x = DIAG_EN;
+    AFE4400_Write(CONTROL0, (uint32_t*) &x, 1);
 }
 
 uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size)
 {
-    uint8_t buf[4] = {0};
+    uint8_t WriteEnBuf[] = {CONTROL0, 0x00, 0x00, 0x00};
+    uint8_t TxBuf[4] = {0};
     uint8_t i;
 
-    for(i=0; i<sizeof(buf); i++)
+    if (HAL_OK != HAL_SPI_Transmit(&hspi2, (uint8_t*) WriteEnBuf, sizeof(WriteEnBuf), 100))
     {
-        buf[i] = (uint8_t)(*Data >> (24 - 8*i));
+        // error handler
     }
 
-    HAL_SPI_Transmit(&hspi2, (uint8_t*) buf, 4U, 100);
+    for(i=0; i<sizeof(TxBuf); i++)
+    {
+        if (0 == i)
+        {
+            TxBuf[i] = Address;
+            continue;
+        }     
+        
+        TxBuf[i] = (uint8_t)(*Data >> (24 - 8*i));  
+    }
+
+    if (HAL_OK != HAL_SPI_Transmit(&hspi2, (uint8_t*) TxBuf, sizeof(TxBuf), 100))
+    {
+        // error handler
+    }
 }
