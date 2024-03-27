@@ -28,7 +28,11 @@ static void Sample_TimersInit(AFE4400_Data_t *Data);
 */
 static void LedPulse_TimersInit(AFE4400_Data_t *Data);
 
+/** Timer Enable */
+static void TimerEnable(AFE4400_Data_t *Data);
 
+/** Timer Disable */
+static void TimerDisable(AFE4400_Data_t *Data);
 
 /** Timer module initialization function
 * Parameters - configuration parameters
@@ -56,6 +60,9 @@ extern void TimerModuleInit(void)
         LedPulse_TimersInit(&AFE4400_Data);
         AFE4400_Write(LED2LEDSTC, &AFE4400_Data.LED2LEDSTC, 2U);
         AFE4400_Write(LED1LEDSTC, &AFE4400_Data.LED1LEDSTC, 2U);
+
+        TimerEnable(&AFE4400_Data);
+        AFE4400_Write(CONTROL1, &AFE4400_Data.CONTROL1, 1U);
 
    }
    else
@@ -150,4 +157,15 @@ static void LedPulse_TimersInit(AFE4400_Data_t *Data)
     Data->LED1LEDENDC   = (Data->ALED2CONVEND);
 }
 
+/** Timer Enable */
+static void TimerEnable(AFE4400_Data_t *Data)
+{
+    Data->CONTROL1 |= TIMEREN | (1<<1);
+}
 
+/** Timer Disable */
+static void TimerDisable(AFE4400_Data_t *Data)
+{
+    Data->CONTROL1 &= ~TIMEREN;
+    Data->CONTROL1 |= (1<<1);
+}
