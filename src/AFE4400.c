@@ -8,6 +8,7 @@
 
 #ifdef STM32F103
 #include "stm32f1xx_hal.h"
+SPI_HandleTypeDef hspi2;
 #endif
 
 AFE4400_Data_t AFE4400_Data = {0};                /** AFE4400 All registers data */
@@ -29,5 +30,13 @@ void AFE4400_Init(void)
 
 uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size)
 {
+    uint8_t buf[4] = {0};
+    uint8_t i;
 
+    for(i=0; i<sizeof(buf); i++)
+    {
+        buf[i] = (uint8_t)(*Data >> (24 - 8*i));
+    }
+
+    HAL_SPI_Transmit(&hspi2, (uint8_t*) buf, 4U, 100);
 }
