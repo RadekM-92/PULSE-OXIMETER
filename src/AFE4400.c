@@ -26,8 +26,6 @@ void AFE4400_Init(void)
     TxInit();
     RxInit();
     TimerModuleInit();
-    uint32_t x = DIAG_EN;
-    AFE4400_Write(CONTROL0, (uint32_t*) &x, 1);
 }
 
 uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size)
