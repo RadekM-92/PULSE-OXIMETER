@@ -27,14 +27,14 @@ extern void ParametersInit(AFE4400_Parameters_t *Parameters)
     Parameters->PRF = 500;
     Parameters->DutyCycle = 25;
 
-    Parameters->LED1_Current_mA = 20;
-    Parameters->LED2_Current_mA = 20;
+    Parameters->LED1_Current_mA = 10;
+    Parameters->LED2_Current_mA = 10;
 
-    Parameters->Cf = Cf_25pF;
-    Parameters->Rf = Rf_10k;
+    Parameters->Cf = Cf_05pF;
+    Parameters->Rf = Rf_500k;
 
-    Parameters->CancellationCurrent = 5;
-    Parameters->STG2_GAIN = 3;
+    Parameters->CancellationCurrent = 0;
+    Parameters->STG2_GAIN = 1;
 }
 
 /** Software reset - resets all internal registers to the default values */
