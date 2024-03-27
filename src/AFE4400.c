@@ -28,7 +28,7 @@ void AFE4400_Init(void)
     TimerModuleInit();
 }
 
-uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size)
+uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint8_t Size)
 {
     uint8_t WriteEnBuf[] = {CONTROL0, 0x00, 0x00, 0x00};
     uint8_t TxBuf[4] = {0};
