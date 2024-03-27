@@ -25,6 +25,12 @@ extern void TxInit(void)
     TxLedsCurrentInit(&AFE4400_Parameters, &AFE4400_Data);
 
     AFE4400_Write(LEDCNTRL, &AFE4400_Data.LEDCNTRL, 1U);
+
+    AFE4400_Data.CONTROL2 |= (1<<8);
+    AFE4400_Write(CONTROL2, &AFE4400_Data.CONTROL2, 1U);
+
+    AFE4400_Data.ALARM |= (1<<7);
+    AFE4400_Write(ALARM, &AFE4400_Data.ALARM, 1U);
 }
 
 /** Tx LEDs current init
