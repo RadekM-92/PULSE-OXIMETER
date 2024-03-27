@@ -18,3 +18,8 @@ void AFE4400_Init(void)
     RxInit();
     TimerModuleInit();
 }
+
+uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint16_t Size)
+{
+
+}
