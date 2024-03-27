@@ -39,10 +39,24 @@ extern void TimerModuleInit(void)
    if (IsTimerModuleParamOk(&AFE4400_Parameters))
    {
         PRP_TimerInit(&AFE4400_Parameters, &AFE4400_Data);
+        AFE4400_Write(PRPCOUNT, &AFE4400_Data.PRPCOUNT, 1U);
+
         ADC_TimersInit(&AFE4400_Parameters, &AFE4400_Data);
+        AFE4400_Write(ADCRSTSTCT0, &AFE4400_Data.ADCRSTSTCT0, 8U);
+
         Convert_TimersInit(&AFE4400_Data);
+        AFE4400_Write(LED2CONVST, &AFE4400_Data.LED2CONVST, 8U);
+
         Sample_TimersInit(&AFE4400_Data);
+        AFE4400_Write(ALED2STC, &AFE4400_Data.ALED2STC, 2U);
+        AFE4400_Write(ALED1STC, &AFE4400_Data.ALED1STC, 2U);
+        AFE4400_Write(LED1STC, &AFE4400_Data.LED1STC, 2U);
+        AFE4400_Write(LED2STC, &AFE4400_Data.LED2STC, 2U);
+
         LedPulse_TimersInit(&AFE4400_Data);
+        AFE4400_Write(LED2LEDSTC, &AFE4400_Data.LED2LEDSTC, 2U);
+        AFE4400_Write(LED1LEDSTC, &AFE4400_Data.LED1LEDSTC, 2U);
+
    }
    else
    {
