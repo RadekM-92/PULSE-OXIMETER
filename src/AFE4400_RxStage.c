@@ -81,9 +81,9 @@ extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_Rea
 */
 float ADC_RawToReal(int32_t ADC_RawVal)
 {
-    const int16_t Raw_10mV = 17476;
+    const float Raw_0_1mV = 174.76;
 
-    return (float)(ADC_RawVal / Raw_10mV) / 100.0f;
+    return ADC_RawVal / Raw_0_1mV / 10.0f;   // mV
 }
 
 /** Two's complement to decimal conversion */
