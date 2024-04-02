@@ -65,14 +65,14 @@ static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t 
 /** LEDs real ADC measurement data update */
 extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs)
 {
-    const uint8_t ADC_22bit = 22;
+    const uint32_t RegisterMask = 0x3FFFFU;
 
-    LEDs->LED2_On       = ADC_RawToReal(TwosCompToDec(Data->LED2VAL, ADC_22bit));
-    LEDs->LED2_Ambient  = ADC_RawToReal(TwosCompToDec(Data->ALED2VAL, ADC_22bit));
-    LEDs->LED2_Diff     = ADC_RawToReal(TwosCompToDec(Data->LED2_ALED2VAL, ADC_22bit));
-    LEDs->LED1_On       = ADC_RawToReal(TwosCompToDec(Data->LED1VAL, ADC_22bit));
-    LEDs->LED1_Ambient  = ADC_RawToReal(TwosCompToDec(Data->ALED1VAL, ADC_22bit));
-    LEDs->LED1_Diff     = ADC_RawToReal(TwosCompToDec(Data->LED1_ALED1VAL, ADC_22bit));
+    LEDs->LED2_On       = ADC_RawToReal(Data->LED2VAL & RegisterMask);
+    LEDs->LED2_Ambient  = ADC_RawToReal(Data->ALED2VAL & RegisterMask);
+    LEDs->LED2_Diff     = ADC_RawToReal(Data->LED2_ALED2VAL & RegisterMask);
+    LEDs->LED1_On       = ADC_RawToReal(Data->LED1VAL & RegisterMask);
+    LEDs->LED1_Ambient  = ADC_RawToReal(Data->ALED1VAL & RegisterMask);
+    LEDs->LED1_Diff     = ADC_RawToReal(Data->LED1_ALED1VAL & RegisterMask);
 }
 
 /** ADC scaling
@@ -81,9 +81,14 @@ extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_Rea
 */
 float ADC_RawToReal(int32_t ADC_RawVal)
 {
-    const float Raw_0_1mV = 174.76;
+    const float Vref = 1.2f;
+    const float Denominator = 2097152.0f;
+    float ADC_Real_Volt;
+    float Numerator = (float)ADC_RawVal * Vref;
 
-    return ADC_RawVal / Raw_0_1mV / 10.0f;   // mV
+    ADC_Real_Volt = Numerator / Denominator;
+
+    return ADC_Real_Volt * 1000.0f;
 }
 
 /** Two's complement to decimal conversion */
