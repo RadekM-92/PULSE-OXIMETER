@@ -67,12 +67,12 @@ extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_Rea
 {
     const uint32_t RegisterMask = 0x3FFFFU;
 
-    LEDs->LED2_On       = ADC_RawToReal(Data->LED2VAL & RegisterMask);
-    LEDs->LED2_Ambient  = ADC_RawToReal(Data->ALED2VAL & RegisterMask);
-    LEDs->LED2_Diff     = ADC_RawToReal(Data->LED2_ALED2VAL & RegisterMask);
-    LEDs->LED1_On       = ADC_RawToReal(Data->LED1VAL & RegisterMask);
-    LEDs->LED1_Ambient  = ADC_RawToReal(Data->ALED1VAL & RegisterMask);
-    LEDs->LED1_Diff     = ADC_RawToReal(Data->LED1_ALED1VAL & RegisterMask);
+    LEDs->LED2_On       = ADC_RawToReal(TwosCompToDec(Data->LED2VAL, 22U));
+    LEDs->LED2_Ambient  = ADC_RawToReal(TwosCompToDec(Data->ALED2VAL, 22U));
+    LEDs->LED2_Diff     = ADC_RawToReal(TwosCompToDec(Data->LED2_ALED2VAL, 22U));
+    LEDs->LED1_On       = ADC_RawToReal(TwosCompToDec(Data->LED1VAL, 22U));
+    LEDs->LED1_Ambient  = ADC_RawToReal(TwosCompToDec(Data->ALED1VAL, 22U));
+    LEDs->LED1_Diff     = ADC_RawToReal(TwosCompToDec(Data->LED1_ALED1VAL, 22U));
 }
 
 /** ADC scaling
