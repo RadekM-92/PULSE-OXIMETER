@@ -33,7 +33,7 @@ extern void ParametersInit(AFE4400_Parameters_t *Parameters)
     Parameters->Cf = Cf_05pF;
     Parameters->Rf = Rf_500k;
 
-    Parameters->CancellationCurrent = 1;
+    Parameters->CancellationCurrent = Cc_1uA;
     Parameters->STG2_GAIN = 3;
 }
 

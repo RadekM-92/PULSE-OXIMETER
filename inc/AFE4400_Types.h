@@ -250,6 +250,23 @@ typedef struct
     uint8_t STG2_GAIN;          /** Stage 2 gain  */
 } AFE4400_Parameters_t;
 
+/** Cancellation current */
+typedef enum
+{
+    Cc_0uA = 0U,
+    Cc_1uA = 1U,
+    Cc_2uA = 2U,
+    Cc_3uA = 3U,
+    Cc_4uA = 4U,
+    Cc_5uA = 5U,
+    Cc_6uA = 6U,
+    Cc_7uA = 7U,
+    Cc_8uA = 8U,
+    Cc_9uA = 9U,
+    Cc_10uA = 10U,
+
+} Cancellation_Current_t;
+
 /** Cf capatiences
  * For example, to obtain CF = 100 pF, set D = 01111
 */
