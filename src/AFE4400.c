@@ -60,7 +60,7 @@ AFE4400_LEDs_RealDataADC_t AFE4400_LEDs = {0};    /** AFE4400 - LEDs real ADC Da
 
 
 /** AFE4400 Init */
-void AFE4400_Init(void)
+extern void AFE4400_Init(void)
 {
     ParametersInit(&AFE4400_Parameters);
     AFE4400_CS_Disable();

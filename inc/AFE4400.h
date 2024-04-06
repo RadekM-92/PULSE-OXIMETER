@@ -11,7 +11,7 @@
 #define RxStage2_CurrentMax     10U
 
 /** AFE4400 Init */
-void AFE4400_Init(void);
+extern void AFE4400_Init(void);
 
 /** Configuration of parameters */
 extern void ParametersInit(AFE4400_Parameters_t *Parameters);
