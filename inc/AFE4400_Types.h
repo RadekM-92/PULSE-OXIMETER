@@ -267,6 +267,16 @@ typedef enum
 
 } Cancellation_Current_t;
 
+/** Gain setting */
+typedef enum
+{
+    Gain_x1 = 0U,
+    Gain_x1_5 = 1U,
+    Gain_x2 = 2U,
+    Gain_x3 = 3U,
+    Gain_x4 = 4U,
+} Stage2Gain_t;
+
 /** Cf capatiences
  * For example, to obtain CF = 100 pF, set D = 01111
 */

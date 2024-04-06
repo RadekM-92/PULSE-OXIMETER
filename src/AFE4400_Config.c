@@ -34,7 +34,7 @@ extern void ParametersInit(AFE4400_Parameters_t *Parameters)
     Parameters->Rf = Rf_500k;
 
     Parameters->CancellationCurrent = Cc_1uA;
-    Parameters->STG2_GAIN = 3;
+    Parameters->STG2_GAIN = Gain_x3;
 }
 
 /** Software reset - resets all internal registers to the default values */
