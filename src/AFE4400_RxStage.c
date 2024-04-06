@@ -1,25 +1,6 @@
+#include "AFE4400_RxStage.h"
 
 
-#include "AFE4400.h"
-#include "AFE4400_Types.h"
-
-
-
-
-/** Rx low pass filter init */
-static void RxLowPassFilterInit(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
-
-/** Rx Stage 2 init */
-static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
-
-/** ADC scaling 
- * -2097152 -> -1.2[V]
- * 2097151  ->  1.2[V]
-*/
-float ADC_RawToReal(int32_t ADC_RawVal);
-
-/** Two's complement to decimal conversion */
-int32_t TwosCompToDec(uint32_t TwosVal, uint32_t n_bits);
 
 
 
@@ -83,7 +64,7 @@ extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_Rea
  * -2097152 -> -1.2[V]
  * 2097151  ->  1.2[V]
 */
-float ADC_RawToReal(int32_t ADC_RawVal)
+static float ADC_RawToReal(int32_t ADC_RawVal)
 {
     const float Vref = 1.2f;
     const float Denominator = 2097152.0f;
@@ -96,7 +77,7 @@ float ADC_RawToReal(int32_t ADC_RawVal)
 }
 
 /** Two's complement to decimal conversion */
-int32_t TwosCompToDec(uint32_t TwosVal, uint32_t n_bits)
+static int32_t TwosCompToDec(uint32_t TwosVal, uint32_t n_bits)
 {
     uint32_t sign_mask = 1 << (n_bits - 1);
 
