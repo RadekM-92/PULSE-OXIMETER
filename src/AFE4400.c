@@ -61,6 +61,7 @@ AFE4400_LEDs_RealDataADC_t AFE4400_LEDs = {0};    /** AFE4400 - LEDs real ADC Da
 void AFE4400_Init(void)
 {
     ParametersInit(&AFE4400_Parameters);
+    AFE4400_CS_Disable();
     AFE4400_HwPowerUp();
     AFE4400_RST();
     TxInit();
@@ -74,6 +75,8 @@ uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint
     uint8_t TxBuf[4] = {0};
     uint8_t i, n;
     int8_t WriteStatus = 0U;
+
+    AFE4400_CS_Enable();
 
     if (HAL_OK != HAL_SPI_Transmit(&hspi2, (uint8_t*) WriteEnBuf, sizeof(WriteEnBuf), 100))
     {
@@ -98,6 +101,9 @@ uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint
         WriteStatus = 1U;
     }
     }
+    
+    AFE4400_CS_Disable();
+
     return WriteStatus;
 }
 
@@ -109,6 +115,8 @@ uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Siz
     uint8_t i, n, k;
     uint8_t ReadStatus = 0U;
     uint8_t WriteStatus = 0U;
+
+    AFE4400_CS_Enable();
 
     WriteStatus = HAL_SPI_Transmit(&hspi2, (uint8_t*) ReadEnBuf, sizeof(ReadEnBuf), 100);
     
@@ -134,7 +142,7 @@ uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Siz
         }
     }
 
- 
+    AFE4400_CS_Disable();
 
     return (0 == ReadStatus && 0 == WriteStatus)? 0U : 1U;
 }
