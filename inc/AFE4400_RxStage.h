@@ -13,6 +13,9 @@ static void RxLowPassFilterInit(const AFE4400_Parameters_t *Parameters, AFE4400_
 /** Rx Stage 2 init */
 static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t *Data);
 
+/** LEDs real ADC measurement data update */
+extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
+
 /** ADC scaling 
  * -2097152 -> -1.2[V]
  * 2097151  ->  1.2[V]

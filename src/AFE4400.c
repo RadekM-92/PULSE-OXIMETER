@@ -148,3 +148,8 @@ uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Siz
 
     return (0 == ReadStatus && 0 == WriteStatus)? 0U : 1U;
 }
+
+extern uint8_t AFE4400_ConvertMeasurement(void)
+{
+    LEDs_RealDataADC_Update(&AFE4400_Data, &AFE4400_LEDs);
+}

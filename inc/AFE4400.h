@@ -12,12 +12,12 @@
 
 /** AFE4400 Init */
 extern void AFE4400_Init(void);
+extern uint8_t AFE4400_ConvertMeasurement(void);
 
 /** Configuration of parameters */
 extern void ParametersInit(AFE4400_Parameters_t *Parameters);
 
-/** LEDs real ADC measurement data update */
-extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
+
 
 extern uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint8_t Size);
 extern uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size);
