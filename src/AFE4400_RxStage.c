@@ -60,6 +60,10 @@ static void RxStage2Init(const AFE4400_Parameters_t *Parameters, AFE4400_Data_t 
         Data->TIA_AMB_GAIN |= (Parameters->STG2_GAIN<<8);
         Data->TIA_AMB_GAIN |= STAGE2EN;
     }
+    else
+    {
+        Data->TIA_AMB_GAIN &= ~STAGE2EN;
+    }
 }
 
 /** LEDs real ADC measurement data update */
