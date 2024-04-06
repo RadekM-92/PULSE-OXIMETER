@@ -2,8 +2,10 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "AFE4400.h"
-#include "AFE4400_Types.h"
+#include "AFE4400_TxStage.h"
+#include "AFE4400_RxStage.h"
+#include "AFE4400_Timers.h"
+#include "AFE4400_Maintenance.h"
 
 #ifndef STM32F103
 #define STM32F103

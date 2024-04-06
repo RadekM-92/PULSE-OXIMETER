@@ -323,24 +323,12 @@ extern AFE4400_Parameters_t AFE4400_Parameters;    /** AFE4400 - Parameters */
 
 extern AFE4400_LEDs_RealDataADC_t AFE4400_LEDs;    /** AFE4400 - LEDs real ADC Data */
 
-/** Tx Stage Init*/
-extern void TxInit(void);
 
-/** Rx Stage Init */
-extern void RxInit(void);
-/** LEDs real ADC measurement data update */
-extern void LEDs_RealDataADC_Update(const AFE4400_Data_t *Data, AFE4400_LEDs_RealDataADC_t *LEDs);
 
-/** Timer module initialization function */
-extern void TimerModuleInit(void);
 
-/** Configuration of parameters */
-extern void ParametersInit(AFE4400_Parameters_t *Parameters);
 
-extern uint8_t AFE4400_Write(AFE4400_REGS_ADDRESS_t Address, const uint32_t *Data, uint8_t Size);
-extern uint8_t AFE4400_Read(AFE4400_REGS_ADDRESS_t Address, uint32_t *Data, uint8_t Size);
 
-extern uint8_t AFE4400_MemDump(AFE4400_Data_t *Data);
-extern uint8_t AFE4400_MemCmp(const AFE4400_Data_t *DataSend, AFE4400_Data_t *DataReceive, AFE4400_REGS_ADDRESS_t Address, uint8_t Size);
+
+
 
 #endif
