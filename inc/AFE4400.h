@@ -13,6 +13,7 @@
 /** AFE4400 Init */
 extern void AFE4400_Init(void);
 extern uint8_t AFE4400_ConvertMeasurement(void);
+extern uint8_t AFE4400_ReadMeasurement(void);
 
 /** Configuration of parameters */
 extern void ParametersInit(AFE4400_Parameters_t *Parameters);

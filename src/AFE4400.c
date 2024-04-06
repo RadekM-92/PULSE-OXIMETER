@@ -153,3 +153,8 @@ extern uint8_t AFE4400_ConvertMeasurement(void)
 {
     LEDs_RealDataADC_Update(&AFE4400_Data, &AFE4400_LEDs);
 }
+
+extern uint8_t AFE4400_ReadMeasurement(void)
+{
+    return AFE4400_Read(LED2VAL, &AFE4400_Data.LED2VAL, 6U);
+}
